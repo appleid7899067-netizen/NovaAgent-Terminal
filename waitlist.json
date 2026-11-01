@@ -1,0 +1,12 @@
+{
+  "entries": {
+    "test@boss.com": {
+      "email": "test@boss.com",
+      "status": "active",
+      "code": "NOVA-V6ID2Y",
+      "created_at": "2026-10-25T01:42:19+0700",
+      "invited_at": "2026-10-25T01:42:19+0700",
+      "activated_at": "2026-10-25T01:42:19+0700"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Face Swap Studio - MVP Tester</title>
+  <style>
+    :root{
+      --bg: #0f1220;
+      --card: #141a2b;
+      --card-2: #1e2540;
+      --text: #f5f7fb;
+      --muted: #b6bfd6;
+      --accent: #7bd4ff;
+      --success: #6bdc97;
+      --warning: #ffd166;
+      --danger: #ff6b6b;
+      --shadow: 0 12px 28px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;height:100%;font-family: Inter, ui-sans-serif, system-ui, -apple-system, Arial; background: linear-gradient(135deg, #0b0f1a 0%, #0f1220 60%), var(--bg); color:var(--text)}
+
+    /* Top brand bar */
+    .brandbar{display:flex;align-items:center;gap:12px;padding:16px 20px;border-radius:12px 12px 0 0;border-bottom:1px solid rgba(255,255,255,.08);background:linear-gradient(135deg, rgba(20,26,44,.95) 0%, rgba(15,19,34,.95) 100%);} 
+    .brand-logo{width:34px;height:34px;flex:0 0 auto;border-radius:8px;background:linear-gradient(135deg, #2cc0ff 0%, #6a5cff 100%);display:flex;align-items:center;justify-content:center;margin-right:6px}
+    .brand-title{font-weight:700;letter-spacing:.4px}
+    .badge{margin-left:auto;background:#1f2a5a;color:#e9edff;padding:6px 12px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.15)}
+
+    /* Card layout */
+    .wrap{min-height:100%;display:flex;flex-direction:column;gap:20px; padding: 20px}
+    .card{width:100%;max-width:980px;margin:0 auto;background:linear-gradient(180deg, rgba(20,26,44,.95), rgba(20,26,44,.75));border-radius:16px;box-shadow:var(--shadow);padding:22px 22px 26px}
+    h1{margin:0 0 6px 0;font-size:1.9rem}
+    .subtitle{color:var(--muted);margin-bottom:14px}
+
+    /* Layout */
+    .grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:20px}
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    /* Drag/drop zones */
+    .dropzone{border:2px dashed rgba(123,212,255,.5);border-radius:12px;min-height:140px;display:flex;align-items:center;justify-content:center;background:#0e1022;color:#bcd9ff;cursor:pointer;transition:all .2s ease}
+    .dropzone:hover{border-color:#7bd4ff;box-shadow:0 0 0 6px rgba(123,212,255,.08)}
+    .dropzone .inner{text-align:center}
+    .dropzone input{display:none}
+    .thumb{max-width:100%;max-height:220px;border-radius:8px;border:1px solid #333;margin-top:6px}
+
+    .section{background: rgba(255,255,255,.03); padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.08)}
+    .section h3{margin:6px 0 8px 0;font-size:1.05rem}
+    .buttons{display:flex;gap:12px;justify-content:flex-end;margin-top:4px}
+    button{background:#1e90ff;border:0;color:white;padding:12px 16px;border-radius:8px;cursor:pointer;font-weight:600}
+    button:hover{background:#2a8ef7}
+    .note{font-size:.92em;color:#cbd5e1;margin:6px 0 0 0}
+    .error{color:#ff7b7b}
+    .output{margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="brandbar" aria-label="Brand and testing banner">
+    <div class="brand-logo" aria-label="Logo"></div>
+    <div class="brand-title">Face Swap Studio</div>
+    <span class="badge">TEST MODE</span>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>Face Swap MVP Tester</h1>
+      <p class="subtitle">Internal testing environment. Token-based access required for testing. This UI is designed to look polished and intentional.</p>
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
+      {% if swapped_url %}
+      <div class="output">
+        <h3>Swapped Result</h3>
+        <img src="/{{ swapped_url }}" alt="Swapped image" style="max-width:100%;border-radius:8px;border:1px solid #333"/>
+        <div class="buttons" style="margin-top:6px">
+          <a href="/{{ swapped_url }}" download style="text-decoration:none;color:white"><button>ดาวน์โหลด</button></a>
+        </div>
+      </div>
+      {% endif %}
+      <div class="grid" style="margin-top:14px">
+        <div class="section" style="padding:14px;border-radius:12px">
+          <h3>อัปโหลดภาพ</h3>
+          <p class="note">คลิกพื้นที่ด้านล่างเพื่อเลือกภาพ หรือทำการลากวางภาพที่ต้องการลงไป</p>
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+            <div class="dropzone" id="dz1" onclick="document.getElementById('image1').click()">
+              <div class="inner">
+                <strong>ภาพที่ 1</strong>
+                <div>ต้นฉบับ</div>
+              </div>
+              <input type="file" name="image1" id="image1" form="swapForm" accept="image/*" onchange="previewFile(this,'thumb1')">
+            </div>
+            <div class="dropzone" id="dz2" onclick="document.getElementById('image2').click()">
+              <div class="inner">
+                <strong>ภาพที่ 2</strong>
+                <div>ใบหน้าที่จะสลับ</div>
+              </div>
+              <input type="file" name="image2" id="image2" accept="image/*" onchange="previewFile(this,'thumb2')">
+            </div>
+          </div>
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;">
+            <img id="thumb1" class="thumb" src="" alt="Preview 1" style="display:none"/>
+            <img id="thumb2" class="thumb" src="" alt="Preview 2" style="display:none"/>
+          </div>
+        </div>
+      </div>
+      <form id="swapForm" method="post" enctype="multipart/form-data" onsubmit="return validateFiles();" style="margin-top:12px;">
+        <div class="buttons" style="justify-content:flex-end">
+          <button type="submit">สลับใบหน้า</button>
+        </div>
+      </form>
+      <div class="note" style="margin-top:12px">หมายเหตุ: นี่เป็นเวอร์ชันทดสอบภายใน อัปเดต UI เพื่อดูความตั้งใจในการทำงานและประสบการณ์ผู้ใช้</div>
+    </div>
+  </div>
+
+<script>
+function previewFile(input, imgId){
+  if(input && input.files && input.files[0]){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const img = document.getElementById(imgId);
+      img.src = e.target.result;
+      img.style.display = 'block';
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+function validateFiles(){
+  const i1 = document.getElementById('image1').files.length;
+  const i2 = document.getElementById('image2').files.length;
+  if(!i1 || !i2){ alert('กรุณาอัปโหลดรูปภาพสองภาพ'); return false; }
+  return true;
+}
+// Optional drag-and-drop (basic)
+['dragover','drop','dragenter','dragleave'].forEach(evt => {
+  document.addEventListener(evt, function(e){ e.preventDefault(); e.stopPropagation(); }, false);
+});
+document.getElementById('dz1').addEventListener('drop', function(e){
+  // Basic: do not auto-assign, keep UX simple
+  e.preventDefault();
+});
+document.getElementById('dz2').addEventListener('drop', function(e){
+  e.preventDefault();
+});
+</script>
+</body>
+</html>

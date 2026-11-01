@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>boss.slilelo — Build</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/assets/bolt-ui/bolt-style-chat.css">
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #0f0f0f; }
+  #bolt-root { width: 100%; min-height: 100vh; }
+  .bolt-messages {
+    position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 700px; max-height: 50vh; overflow-y: auto;
+    padding: 0 16px; z-index: 50;
+  }
+  .bolt-msg {
+    padding: 12px 16px; border-radius: 16px; margin: 8px 0;
+    max-width: 80%; word-wrap: break-word; font-family: 'Inter', sans-serif;
+  }
+  .bolt-msg-user {
+    background: #1488fc; color: white; margin-left: auto;
+  }
+  .bolt-msg-bot {
+    background: #1e1e22; color: white; border: 1px solid rgba(255,255,255,0.08);
+  }
+</style>
+</head>
+<body>
+  <div id="bolt-root"></div>
+  <div id="bolt-messages" class="bolt-messages"></div>
+
+  <script src="/assets/bolt-ui/bolt-style-chat.js"></script>
+  <script>
+    // === State ===
+    let currentSessionId = 'bolt-' + Date.now();
+    let isLoggedIn = false;
+
+    // === Auto Login ===
+    async function ensureLogin() {
+      if (isLoggedIn) return true;
+      try {
+        const check = await fetch('/auth/check').then(r => r.json());
+        if (check.authenticated) {
+          isLoggedIn = true;
+          console.log('✅ Already logged in');
+          return true;
+        }
+        console.log('🔑 Logging in...');
+        const login = await fetch('/auth/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ password: 'Bossxnxx' })
+        }).then(r => r.json());
+        console.log('🔐 Login result:', login);
+        if (login.status === 'success') {
+          isLoggedIn = true;
+          return true;
+        }
+        return false;
+      } catch (err) {
+        console.error('❌ Login failed:', err);
+        return false;
+      }
+    }
+
+    // === Add Message to UI ===
+    function addMessage(role, text) {
+      const box = document.getElementById('bolt-messages');
+      const el = document.createElement('div');
+      el.className = 'bolt-msg bolt-msg-' + role;
+      el.textContent = text;
+      box.appendChild(el);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    // === Mount BoltStyleChat ===
+    BoltStyleChat.mount('#bolt-root', {
+      onSend: async (text, model) => {
+        console.log('📤 ส่ง:', text, '| Model:', model.name);
+        
+        // Login ก่อน
+        const ok = await ensureLogin();
+        if (!ok) {
+          addMessage('bot', '❌ Login ไม่สำเร็จ');
+          return;
+        }
+        
+        // แสดงข้อความผู้ใช้
+        addMessage('user', text);
+        
+        // ส่งข้อความ
+        try {
+          const res = await fetch('/message', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              session_id: currentSessionId,
+              message: text,
+              stream: false,
+              model: model.id,
+              timestamp: new Date().toISOString(),
+              lang: 'th'
+            })
+          });
+          
+          console.log('📡 Status:', res.status);
+          const data = await res.json();
+          console.log('✅ Response:', data);
+          
+          if (data.status === 'success') {
+            const reply = data.reply || data.message || data.inline_reply || 'ไม่มีการตอบกลับ';
+            addMessage('bot', reply);
+          } else {
+            addMessage('bot', '❌ ' + (data.message || 'Error'));
+          }
+        } catch (err) {
+          console.error('❌ Error:', err);
+          addMessage('bot', '❌ ' + err.message);
+        }
+      },
+      onImport: (s) => console.log('📥', s),
+      onModelChange: (m) => console.log('🔄', m.name)
+    });
+
+    console.log('✅ Bolt UI พร้อมใช้งาน');
+  </script>
+</body>
+</html>

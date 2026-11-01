@@ -1,0 +1,232 @@
+/* =====================================================================
+   Theme: Thinking Indicator (21st.dev style)
+   ===================================================================== */
+
+/* Container */
+.agent-thinking-step {
+  margin: 10px 0;
+  padding: 0;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Thinking header (collapsed state) */
+.agent-thinking-step .thinking-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #94a3b8;
+}
+
+.agent-thinking-step .thinking-header:hover {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.2);
+  color: #cbd5e1;
+}
+
+/* Spinner (replaces brain icon) */
+.agent-thinking-step .thinking-header i:first-child {
+  display: none; /* ซ่อน brain icon เก่า */
+}
+
+.agent-thinking-step .thinking-header::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #a78bfa;
+  border-radius: 50%;
+  animation: thinkingSpin 1s linear infinite;
+  flex-shrink: 0;
+}
+
+/* Spinner stopped (when done) */
+.agent-thinking-step.expanded .thinking-header::before,
+.agent-thinking-step.done .thinking-header::before {
+  animation: none;
+  border-color: rgba(167, 139, 250, 0.6);
+  border-top-color: transparent;
+}
+
+@keyframes thinkingSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Label */
+.agent-thinking-step .thinking-summary {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: #cbd5e1;
+  letter-spacing: -0.01em;
+}
+
+/* Timer */
+.agent-thinking-step .thinking-timer,
+.agent-thinking-step .thinking-duration {
+  font-size: 11.5px;
+  color: #64748b;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-left: auto;
+  margin-right: 6px;
+}
+
+/* Chevron */
+.agent-thinking-step .thinking-chevron {
+  font-size: 10px !important;
+  color: #64748b;
+  transition: transform 0.25s ease, color 0.2s ease;
+  opacity: 0.6;
+}
+
+.agent-thinking-step:hover .thinking-chevron {
+  color: #a78bfa;
+  opacity: 1;
+}
+
+.agent-thinking-step.expanded .thinking-chevron {
+  transform: rotate(90deg);
+  color: #a78bfa;
+  opacity: 1;
+}
+
+/* Thinking content (expanded) */
+.agent-thinking-step .thinking-full {
+  display: none;
+  margin: 8px 0 0 0;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  max-height: 300px;
+  overflow-y: auto;
+  animation: thinkingFade 0.3s ease;
+}
+
+@keyframes thinkingFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.agent-thinking-step.expanded .thinking-full {
+  display: block;
+}
+
+/* Context box style (เหมือน 21st.dev) */
+.agent-thinking-step .thinking-full {
+  position: relative;
+}
+
+.agent-thinking-step .thinking-full::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(167, 139, 250, 0.3),
+    transparent
+  );
+}
+
+/* Paragraphs inside thinking */
+.agent-thinking-step .thinking-full p {
+  margin: 0.5em 0;
+}
+
+.agent-thinking-step .thinking-full p:first-child { margin-top: 0; }
+.agent-thinking-step .thinking-full p:last-child { margin-bottom: 0; }
+
+/* Streaming text (while thinking) */
+.agent-thinking-step .thinking-stream-pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.7;
+  color: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Pulse effect while thinking */
+.agent-thinking-step:not(.done) .thinking-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-thinking-step:not(.done) .thinking-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(167, 139, 250, 0.1),
+    transparent
+  );
+  animation: thinkingShimmer 2s infinite;
+}
+
+@keyframes thinkingShimmer {
+  to { left: 100%; }
+}
+
+/* Light mode */
+:not(.dark) .agent-thinking-step .thinking-header {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: #475569;
+}
+
+:not(.dark) .agent-thinking-step .thinking-header:hover {
+  background: rgba(139, 92, 246, 0.05);
+}
+
+:not(.dark) .agent-thinking-step .thinking-summary {
+  color: #1e293b;
+}
+
+:not(.dark) .agent-thinking-step .thinking-full {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: #475569;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .agent-thinking-step .thinking-header {
+    padding: 9px 10px;
+  }
+  
+  .agent-thinking-step .thinking-summary {
+    font-size: 12.5px;
+  }
+  
+  .agent-thinking-step .thinking-full {
+    padding: 12px 14px;
+    font-size: 12.5px;
+  }
+}

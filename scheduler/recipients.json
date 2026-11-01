@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "recipients": {
+    "telegram-de6e7b251d:8919051217": {
+      "channel_type": "telegram",
+      "instance_id": "telegram-de6e7b251d",
+      "receiver": "8919051217",
+      "name": "Boss NuSolilo",
+      "is_group": false,
+      "session_id": "tg_user_8919051217",
+      "last_seen_at": "2026-10-16T10:28:53.087885+00:00"
+    },
+    "openai_api:openai%3Arequest%3Achatcmpl-581f303554014a22b3020fad4b5e2f74": {
+      "channel_type": "openai_api",
+      "instance_id": "openai_api",
+      "receiver": "openai:request:chatcmpl-581f303554014a22b3020fad4b5e2f74",
+      "name": "未知",
+      "is_group": false,
+      "session_id": "openai:request:chatcmpl-581f303554014a22b3020fad4b5e2f74",
+      "last_seen_at": "2026-10-16T10:52:30.010332+00:00"
+    },
+    "openai_api:openai%3Arequest%3Achatcmpl-bf111907b4394a12a5aa36a1fc310179": {
+      "channel_type": "openai_api",
+      "instance_id": "openai_api",
+      "receiver": "openai:request:chatcmpl-bf111907b4394a12a5aa36a1fc310179",
+      "name": "未知",
+      "is_group": false,
+      "session_id": "openai:request:chatcmpl-bf111907b4394a12a5aa36a1fc310179",
+      "last_seen_at": "2026-10-16T10:53:05.147330+00:00"
+    }
+  }
+}

@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns: o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel">
+  <DocumentProperties>
+    <Author>AI</Author>
+    <LastAuthor>AI</LastAuthor>
+    <Created>2026-10-16T00:00:00Z</Created>
+  </DocumentProperties>
+  <Styles>
+    <Style ss:ID="Default" ss:Name="Normal">
+      <Alignment ss:Vertical="Bottom"/>
+      <Borders/>
+      <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11"/>
+      <Interior/>
+      <NumberFormat/>
+      <Protection/>
+    </Style>
+  </Styles>
+  <Worksheet ss:Name="January 2026">
+    <Table>
+      <Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/>
+      <Row>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Month</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Category</Data></Cell>
+        <Cell><Data ss:Type="String">Income</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="String">Net</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-01-01</Data></Cell>
+        <Cell><Data ss:Type="String">Month 1</Data></Cell>
+        <Cell><Data ss:Type="String">Opening Balance</Data></Cell>
+        <Cell><Data ss:Type="String">Other</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-01-05</Data></Cell>
+        <Cell><Data ss:Type="String">Month 1</Data></Cell>
+        <Cell><Data ss:Type="String">Salary</Data></Cell>
+        <Cell><Data ss:Type="String">Income</Data></Cell>
+        <Cell><Data ss:Type="Number">4000</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">4000</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-01-10</Data></Cell>
+        <Cell><Data ss:Type="String">Month 1</Data></Cell>
+        <Cell><Data ss:Type="String">Rent</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">1200</Data></Cell>
+        <Cell><Data ss:Type="Number">-1200</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-01-12</Data></Cell>
+        <Cell><Data ss:Type="String">Month 1</Data></Cell>
+        <Cell><Data ss:Type="String">Groceries</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">350</Data></Cell>
+        <Cell><Data ss:Type="Number">-350</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-01-20</Data></Cell>
+        <Cell><Data ss:Type="String">Month 1</Data></Cell>
+        <Cell><Data ss:Type="String">Freelance</Data></Cell>
+        <Cell><Data ss:Type="String">Income</Data></Cell>
+        <Cell><Data ss:Type="Number">800</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">800</Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+  <Worksheet ss:Name="February 2026">
+    <Table>
+      <Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/>
+      <Row>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Month</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Category</Data></Cell>
+        <Cell><Data ss:Type="String">Income</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="String">Net</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-02-01</Data></Cell>
+        <Cell><Data ss:Type="String">Month 2</Data></Cell>
+        <Cell><Data ss:Type="String">Salary</Data></Cell>
+        <Cell><Data ss:Type="String">Income</Data></Cell>
+        <Cell><Data ss:Type="Number">4200</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">4200</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-02-03</Data></Cell>
+        <Cell><Data ss:Type="String">Month 2</Data></Cell>
+        <Cell><Data ss:Type="String">Rent</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">1200</Data></Cell>
+        <Cell><Data ss:Type="Number">-1200</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-02-10</Data></Cell>
+        <Cell><Data ss:Type="String">Month 2</Data></Cell>
+        <Cell><Data ss:Type="String">Bills</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">250</Data></Cell>
+        <Cell><Data ss:Type="Number">-250</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-02-18</Data></Cell>
+        <Cell><Data ss:Type="String">Month 2</Data></Cell>
+        <Cell><Data ss:Type="String">Gig</Data></Cell>
+        <Cell><Data ss:Type="String">Income</Data></Cell>
+        <Cell><Data ss:Type="Number">600</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">600</Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+  <Worksheet ss:Name="March 2026">
+    <Table>
+      <Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/><Column ss:AutoFit="1"/>
+      <Row>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Month</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Category</Data></Cell>
+        <Cell><Data ss:Type="String">Income</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="String">Net</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-03-01</Data></Cell>
+        <Cell><Data ss:Type="String">Month 3</Data></Cell>
+        <Cell><Data ss:Type="String">Salary</Data></Cell>
+        <Cell><Data ss:Type="String">Income</Data></Cell>
+        <Cell><Data ss:Type="Number">4100</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">4100</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-03-05</Data></Cell>
+        <Cell><Data ss:Type="String">Month 3</Data></Cell>
+        <Cell><Data ss:Type="String">Rent</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">1200</Data></Cell>
+        <Cell><Data ss:Type="Number">-1200</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2026-03-12</Data></Cell>
+        <Cell><Data ss:Type="String">Month 3</Data></Cell>
+        <Cell><Data ss:Type="String">Groceries</Data></Cell>
+        <Cell><Data ss:Type="String">Expense</Data></Cell>
+        <Cell><Data ss:Type="Number">0</Data></Cell>
+        <Cell><Data ss:Type="Number">320</Data></Cell>
+        <Cell><Data ss:Type="Number">-320</Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

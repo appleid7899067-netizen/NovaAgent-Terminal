@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaAgent — UI Design System Mockup</title>
+<style>
+  :root {
+    --color-primary: #0fffd1;
+    --color-secondary: #70ffea;
+    --color-accent: #ff0055;
+    --color-bg: #0a0a0c;
+    --color-surface: #141418;
+    --color-surface-2: #1e1e26;
+    --color-text: #e8e8f0;
+    --color-text-dim: #9aa0b0;
+    --color-border: #2a2a36;
+    --color-focus: #0fffd1;
+    --color-success: #00ff88;
+    --color-warning: #ffcc00;
+    --color-error: #ff0055;
+
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-full: 9999px;
+
+    --border-width: 1px;
+    --border-style: solid;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    font-size: var(--text-base);
+    min-height: 100vh;
+  }
+
+  /* ===== Top Nav ===== */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    height: 64px;
+    background: var(--color-surface);
+    border-bottom: var(--border-width) var(--border-style) var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-6);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-xl);
+    letter-spacing: -0.02em;
+  }
+
+  .brand .logo-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .search-wrap {
+    position: relative;
+    width: 260px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: var(--space-2) var(--space-4);
+    padding-left: 2.5rem;
+    background: var(--color-surface-2);
+    border: var(--border-width) var(--border-style) var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+
+  .search-input::placeholder { color: var(--color-text-dim); }
+  .search-icon {
+    position: absolute;
+    left: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-dim);
+  }
+
+  .nav-item {
+    background: transparent;
+    border: none;
+    color: var(--color-text-dim);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-item:hover { color: var(--color-text); background: var(--color-surface-2); }
+  .nav-item.active { color: var(--color-primary); }
+
+  .avatar {
+    width: 34px;
+    height: 34px;
+    background: var(--color-primary);
+    color: var(--color-bg);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-sm);
+  }
+
+  /* ===== Layout ===== */
+  .app-layout {
+    display: flex;
+    min-height: calc(100vh - 64px);
+  }
+
+  .sidebar {
+    width: 260px;
+    background: var(--color-surface);
+    border-right: var(--border-width) var(--border-style) var(--color-border);
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--space-6);
+  }
+
+  .sidebar-header {
+    padding: 0 var(--space-5) var(--space-8);
+    border-bottom: var(--border-width) var(--border-style) var(--color-border);
+    margin-bottom: var(--space-4);
+  }
+
+  .sidebar-header h2 {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .nav-list { list-style: none; }
+  .nav-item-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-5);
+    color: var(--color-text-dim);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    transition: all 0.2s ease;
+    border-right: 3px solid transparent;
+  }
+
+  .nav-item-link:hover {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    border-right-color: var(--color-primary);
+  }
+
+  .nav-item-link.active {
+    background: var(--color-surface-2);
+    color: var(--color-primary);
+    border-right-color: var(--color-primary);
+  }
+
+  .nav-item-link .icon {
+    width: 20px;
+    text-align: center;
+    font-size: var(--text-sm);
+  }
+
+  .content {
+    flex: 1;
+    padding: var(--space-6);
+    overflow-y: auto;
+  }
+
+  /* ===== Page Header ===== */
+  .page-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .page-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.02em;
+  }
+
+  .page-subtitle {
+    color: var(--color-text-dim);
+    font-size: var(--text-sm);
+  }
+
+  /* ===== Stats Grid ===== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .stat-card {
+    background: var(--color-surface);
+    border: var(--border-width) var(--border-style) var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-value {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-sub {
+    font-size: var(--text-xs);
+    color: var(--color-success);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* ===== Section ===== */
+  .section {
+    background: var(--color-surface);
+    border: var(--border-width) var(--border-style) var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-6);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
+  }
+
+  .section-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .section-actions {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  /* ===== Activity Table ===== */
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .table th,
+  .table td {
+    padding: var(--space-4);
+    text-align: left;
+    border-bottom: var(--border-width) var(--border-style) var(--color-border);
+  }
+
+  .table th {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-dim);
+    background: var(--color-surface-2);
+    text-transform: uppercase;
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+  }
+
+  .table tr:hover { background: rgba(255,255,255,0.03); }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-success {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--color-success);
+  }
+
+  .badge-warning {
+    background: rgba(255, 204, 0, 0.15);
+    color: var(--color-warning);
+  }
+
+  .badge-error {
+    background: rgba(255, 0, 85, 0.15);
+    color: var(--color-error);
+  }
+
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+    border: var(--border-width) var(--border-style) transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-focus);
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .btn-primary:hover { background: var(--color-secondary); }
+
+  .btn-secondary {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+
+  .btn-secondary:hover { background: var(--color-border); }
+
+  .btn-danger {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .btn-danger:hover { opacity: 0.9; }
+
+  .btn-sm { padding: var(--space-2) var(--space-4); font-size: var(--text-sm); }
+
+  .btn-text {
+    background: transparent;
+    color: var(--color-primary);
+    padding: var(--space-2) 0;
+    border: none;
+  }
+
+  .btn-text:hover { text-decoration: underline; }
+
+  /* ===== Field / Input ===== */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .field-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .field-input {
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    background: var(--color-surface);
+    border: var(--border-width) var(--border-style) var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+  }
+
+  .field-input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  }
+
+  .field-hint {
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+    margin: 0;
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: var(--color-surface);
+    border: var(--border-width) var(--border-style) var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .card-value {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin: 0 0 var(--space-2) 0;
+    font-family: var(--font-mono);
+  }
+
+  .card-sub {
+    font-size: var(--text-sm);
+    color: var(--color-text-dim);
+    margin: 0;
+  }
+
+  /* ===== Avatar small ===== */
+  .avatar-sm {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--color-surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    padding: var(--space-6);
+    border-top: var(--border-width) var(--border-style) var(--color-border);
+    color: var(--color-text-dim);
+    font-size: var(--text-xs);
+    text-align: center;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 767px) {
+    .sidebar { position: fixed; left: -260px; top: 64px; bottom: 0; width: 260px; transition: left 0.3s ease; z-index: 300; }
+    .sidebar.open { left: 0; }
+    .content { padding: var(--space-4); }
+    .top-nav { padding: 0 var(--space-4); }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .search-wrap { width: 180px; }
+    .nav-item-link .label { display: none; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .sidebar { width: 72px; overflow: hidden; }
+    .sidebar .nav-item-link .label { display: none; }
+    .sidebar .nav-item-link { justify-content: center; padding: var(--space-3) var(--space-2); }
+    .sidebar-header h2 { display: none; }
+    .content { margin-left: 72px; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .sidebar { width: 260px; }
+    .content { margin-left: 260px; padding: var(--space-6); }
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* Glow accent for primary */
+  .glow {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <nav class="top-nav">
+    <div class="brand">
+      <div class="logo-dot"></div>
+      <span>NovaAgent</span>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" placeholder="ค้นหาในระบบ...">
+    </div>
+    <div class="nav-right">
+      <button class="nav-item" title="การแจ้งเตือน">🔔</button>
+      <div class="avatar">NA</div>
+    </div>
+  </nav>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>เมนูหลัก</h2>
+      </div>
+      <ul class="nav-list">
+        <li><a href="#" class="nav-item-link active"><span class="icon">📊</span><span class="label">ภาพรวม</span></a></li>
+        <li><a href="#" class="nav-item-link"><span class="icon">👥</span><span class="label">ผู้ใช้</span></a></li>
+        <li><a href="#" class="nav-item-link"><span class="icon">📁</span><span class="label">ข้อมูล</span></a></li>
+        <li><a href="#" class="nav-item-link"><span class="icon">📋</span><span class="label">บันทึก</span></a></li>
+        <li><a href="#" class="nav-item-link"><span class="icon">⚙️</span><span class="label">การตั้งค่า</span></a></li>
+      </ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+      <header class="page-header">
+        <h1 class="page-title">ภาพรวมระบบ</h1>
+        <p class="page-subtitle">สถิติภาพรวมและกิจกรรมล่าสุดของ NovaAgent</p>
+      </header>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">ผู้ใช้ทั้งหมด</div>
+          <div class="stat-value">1,234</div>
+          <div class="stat-sub">▲ 12% จากสัปดาห์ที่แล้ว</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">การแจ้งเตือน</div>
+          <div class="stat-value">12</div>
+          <div class="stat-sub" style="color: var(--color-warning)">ต้องดำเนินการ</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">ระบบออนไลน์</div>
+          <div class="stat-value">98%</div>
+          <div class="stat-sub">ปกติ</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">การใช้งาน CPU</div>
+          <div class="stat-value">45%</div>
+          <div class="stat-sub">กำลังปกติ</div>
+        </div>
+      </div>
+
+      <!-- Activity Section -->
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">กิจกรรมล่าสุด</h2>
+          </div>
+          <div class="section-actions">
+            <button class="btn btn-text btn-sm">ดูทั้งหมด</button>
+            <button class="btn btn-primary btn-sm">ส่งออกรายงาน</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 15%">เวลา</th>
+                <th>รายละเอียด</th>
+                <th style="width: 20%">ผู้ใช้</th>
+                <th style="width: 15%">สถานะ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10:15</td>
+                <td>เข้าสู่ระบบสำเร็จ</td>
+                <td><div class="avatar-sm">AD</div> admin</td>
+                <td><span class="badge badge-success">active</span></td>
+              </tr>
+              <tr>
+                <td>10:08</td>
+                <td>อัปโหลดไฟล์ report.pdf</td>
+                <td><div class="avatar-sm">SM</div> somchai</td>
+                <td><span class="badge badge-success">active</span></td>
+              </tr>
+              <tr>
+                <td>09:52</td>
+                <td>เปลี่ยนรหัสผ่าน</td>
+                <td><div class="avatar-sm">SY</div> somying</td>
+                <td><span class="badge badge-warning">pending</span></td>
+              </tr>
+              <tr>
+                <td>09:30</td>
+                <td>ลบรายการเก่าหมดอายุ</td>
+                <td><div class="avatar-sm">SS</div> sisri</td>
+                <td><span class="badge badge-error">inactive</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Components Showcase -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">ตัวอย่างคอมโพเนนต์</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
+          <div class="card">
+            <div class="card-title">ปุ่มหลัก</div>
+            <button class="btn btn-primary" style="width: 100%;">บันทึกการเปลี่ยนแปลง</button>
+          </div>
+          <div class="card">
+            <div class="card-title">ปุ่มรอง</div>
+            <button class="btn btn-secondary" style="width: 100%;">ยกเลิก</button>
+          </div>
+          <div class="card">
+            <div class="card-title">ปุ่มอันตราย</div>
+            <button class="btn btn-danger" style="width: 100%;">ลบรายการนี้</button>
+          </div>
+          <div class="card">
+            <div class="card-title">อินพุตข้อความ</div>
+            <div class="field">
+              <label class="field-label">อีเมล</label>
+              <input type="email" class="field-input" placeholder="name@example.com">
+              <p class="field-hint">ใช้สำหรับเข้าสู่ระบบและรีเซตรหัสผ่าน</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    NovaAgent UI Design System v1.0 &bull; 27 ตุลาคม 2569 &bull; ออกแบบโดยระบบ 0xSTRIKE
+  </footer>
+
+</body>
+</html>

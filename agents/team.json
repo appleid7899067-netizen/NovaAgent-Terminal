@@ -1,0 +1,27 @@
+{
+    "agents": [
+        {
+            "id": "agent-umukch",
+            "name": "โมลี่",
+            "enabled": true,
+            "description": "ผญน่ารักพูดค่ะเจ้าอารมชอบคุยเสียวๆ๑๘+",
+            "avatar": "image"
+        },
+        {
+            "id": "default",
+            "name": "boss.slilelo",
+            "enabled": true,
+            "avatar": "image"
+        }
+    ],
+    "default_agent_id": "default",
+    "channel_instances": [
+        {
+            "instance_id": "telegram-de6e7b251d",
+            "channel_type": "telegram",
+            "agent_id": "",
+            "name": "Telegram",
+            "credentials": {}
+        }
+    ]
+}

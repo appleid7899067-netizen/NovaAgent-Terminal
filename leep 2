@@ -1,0 +1,32 @@
+[1mdiff --git a/models/openai_compatible_bot.py b/models/openai_compatible_bot.py[m
+[1mindex 95b088a..b5829ca 100644[m
+[1m--- a/models/openai_compatible_bot.py[m
+[1m+++ b/models/openai_compatible_bot.py[m
+[36m@@ -139,6 +139,14 @@[m [mclass OpenAICompatibleBot:[m
+                 "presence_penalty": kwargs.get("presence_penalty", api_config.get('default_presence_penalty', 0.0)),[m
+                 "stream": stream[m
+             }[m
+[32m+[m[32m            # Disable thinking only for NVIDIA NIM Nemotron 3.5 Lightning.[m
+[32m+[m[32m            _nim_base = str(api_config.get("api_base", "")).lower()[m
+[32m+[m[32m            if ("integrate.api.nvidia.com" in _nim_base and[m
+[32m+[m[32m                    "nemotron-3.5-lightning" in str(model_name).lower()):[m
+[32m+[m[32m                request_params["chat_template_kwargs"] = {[m
+[32m+[m[32m                    "enable_thinking": False[m
+[32m+[m[32m                }[m
+[32m+[m
+             # Ask for a final usage chunk on streaming calls so the agent can[m
+             # surface a real prompt_tokens count (context-usage indicator)[m
+             # instead of the char-based estimate. Providers that don't support[m
+[36m@@ -153,6 +161,12 @@[m [mclass OpenAICompatibleBot:[m
+             if is_gpt5_reasoning:[m
+                 for key in ("temperature", "top_p", "frequency_penalty", "presence_penalty"):[m
+                     request_params.pop(key, None)[m
+[32m+[m
+[32m+[m[32m            # Gemini does not support penalty params[m
+[32m+[m[32m            _api_base = str(api_config.get('api_base', '')).lower()[m
+[32m+[m[32m            if "generativelanguage.googleapis.com" in _api_base or "gemini" in str(model_name).lower():[m
+[32m+[m[32m                for key in ("frequency_penalty", "presence_penalty"):[m
+[32m+[m[32m                    request_params.pop(key, None)[m
+             [m
+             # Add max_tokens if specified[m
+             if kwargs.get("max_tokens"):[m

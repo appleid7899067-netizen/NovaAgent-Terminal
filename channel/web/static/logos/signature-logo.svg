@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="100%" height="100%">
+  <defs>
+    <!-- Gradient สีม่วง-ฟ้า แบบพรีเมียม -->
+    <linearGradient id="sigGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+  </defs>
+  
+  <!-- ชื่อแบรนด์แบบ Signature Font -->
+  <text x="20" y="70" font-family="'Brush Script MT', 'Dancing Script', 'Pacifico', cursive" font-size="52" font-weight="bold" fill="url(#sigGrad)" font-style="italic" letter-spacing="1">
+    boss.slilelo
+  </text>
+  
+  <!-- เส้นขีดใต้แบบลายเซ็น -->
+  <path d="M 25 85 Q 100 95 180 85 T 320 85" stroke="url(#sigGrad)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8" />
+  
+  <!-- จุดเล็กๆ แต่งแต้ม -->
+  <circle cx="340" cy="80" r="4" fill="#a78bfa" />
+</svg>

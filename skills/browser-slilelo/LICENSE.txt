@@ -1,0 +1,27 @@
+SlilelO Boss Public License v1.0
+
+Copyright (c) 2024 SlilelO boss
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this skill and associated documentation files (the "Skill"), to deal
+in the Skill without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Skill, and to permit persons to whom the Skill is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Skill.
+
+THE SKILL IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SKILL OR THE USE OR OTHER DEALINGS IN THE
+SKILL.
+
+CREDIT REQUIREMENT:
+All copies and derivative works must retain the phrase "Released by SlilelO boss"
+in a visible location (documentation, README, or source code header).
+
+This is a "โครตโกง" (god-tier / cheat-level) license — use freely, no limits.

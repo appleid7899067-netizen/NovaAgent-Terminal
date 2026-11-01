@@ -1,0 +1,52 @@
+/* Boss Minimalist theme layer
+ * Theme selection is applied by <html class="theme-*"> in core/theme.js.
+ * Keep this file additive: Tailwind remains the structural system.
+ */
+:root {
+  --cow-bg: #f8fafc;
+  --cow-surface: rgba(255,255,255,.92);
+  --cow-surface-soft: rgba(241,245,249,.78);
+  --cow-border: rgba(100,116,139,.18);
+  --cow-text: #172033;
+  --cow-muted: #64748b;
+  --cow-accent: #7b61ff;
+  --cow-accent-2: #00d4ff;
+  --cow-glow: rgba(123,97,255,.18);
+}
+html.dark { --cow-bg: #0d1117; --cow-surface: rgba(17,24,39,.94); --cow-surface-soft: rgba(30,41,59,.72); --cow-border: rgba(148,163,184,.16); --cow-text: #e5edf7; --cow-muted: #94a3b8; --cow-glow: rgba(123,97,255,.18); }
+html.theme-aurora { --cow-bg: #08111b; --cow-surface: rgba(12,25,38,.91); --cow-surface-soft: rgba(17,42,54,.72); --cow-border: rgba(94,234,212,.18); --cow-text: #e6fffb; --cow-muted: #91b7bd; --cow-accent: #62f5c7; --cow-accent-2: #65bfff; --cow-glow: rgba(98,245,199,.2); }
+html.theme-midnight { --cow-bg: #090b16; --cow-surface: rgba(20,22,42,.94); --cow-surface-soft: rgba(35,31,70,.76); --cow-border: rgba(167,139,250,.2); --cow-text: #f1efff; --cow-muted: #aaa8c5; --cow-accent: #b79cff; --cow-accent-2: #647cff; --cow-glow: rgba(167,139,250,.22); }
+html.theme-forest { --cow-bg: #08130f; --cow-surface: rgba(13,31,24,.94); --cow-surface-soft: rgba(20,55,41,.76); --cow-border: rgba(110,231,183,.18); --cow-text: #e6fff2; --cow-muted: #98b9a8; --cow-accent: #6ee7b7; --cow-accent-2: #b5f36b; --cow-glow: rgba(110,231,183,.2); }
+html.theme-ocean { --cow-bg: #07131d; --cow-surface: rgba(11,31,48,.94); --cow-surface-soft: rgba(18,54,78,.76); --cow-border: rgba(56,189,248,.2); --cow-text: #e5f7ff; --cow-muted: #91b7cc; --cow-accent: #38bdf8; --cow-accent-2: #818cf8; --cow-glow: rgba(56,189,248,.2); }
+html.theme-rose { --cow-bg: #170b14; --cow-surface: rgba(39,17,34,.94); --cow-surface-soft: rgba(73,25,57,.76); --cow-border: rgba(244,114,182,.2); --cow-text: #fff0f8; --cow-muted: #c9a0b7; --cow-accent: #f472b6; --cow-accent-2: #fb7185; --cow-glow: rgba(244,114,182,.2); }
+html.theme-amber { --cow-bg: #171108; --cow-surface: rgba(43,29,10,.94); --cow-surface-soft: rgba(73,49,15,.76); --cow-border: rgba(251,191,36,.2); --cow-text: #fff8e1; --cow-muted: #c9b78a; --cow-accent: #fbbf24; --cow-accent-2: #fb923c; --cow-glow: rgba(251,191,36,.2); }
+html.theme-cyber { --cow-bg: #05080d; --cow-surface: rgba(8,17,27,.95); --cow-surface-soft: rgba(11,35,46,.78); --cow-border: rgba(0,212,255,.22); --cow-text: #e5fcff; --cow-muted: #75a3ad; --cow-accent: #00f5d4; --cow-accent-2: #00d4ff; --cow-glow: rgba(0,245,212,.2); }
+html.theme-mono { --cow-bg: #111; --cow-surface: rgba(30,30,30,.95); --cow-surface-soft: rgba(48,48,48,.82); --cow-border: rgba(255,255,255,.18); --cow-text: #f5f5f5; --cow-muted: #aaa; --cow-accent: #fff; --cow-accent-2: #aaa; --cow-glow: rgba(255,255,255,.14); }
+
+/* Only opt in to the palette for named themes; existing light/dark layout stays compatible. */
+html[class*="theme-"] body { background: var(--cow-bg) !important; color: var(--cow-text); }
+html[class*="theme-"] header,
+html[class*="theme-"] aside,
+html[class*="theme-"] .session-panel,
+html[class*="theme-"] [role="dialog"] { background-color: var(--cow-surface) !important; border-color: var(--cow-border) !important; }
+html[class*="theme-"] .bg-white,
+html[class*="theme-"] .dark\:bg-slate-800 { background-color: var(--cow-surface) !important; }
+html[class*="theme-"] .text-slate-800,
+html[class*="theme-"] .dark\:text-slate-200 { color: var(--cow-text) !important; }
+html[class*="theme-"] .text-slate-500,
+html[class*="theme-"] .dark\:text-slate-400 { color: var(--cow-muted) !important; }
+html[class*="theme-"] #theme-toggle:hover,
+html[class*="theme-"] .header-view-btn:hover { background: var(--cow-glow) !important; color: var(--cow-accent) !important; }
+html[class*="theme-"] #theme-icon { color: var(--cow-accent); filter: drop-shadow(0 0 7px var(--cow-glow)); }
+html[class*="theme-"] #theme-menu { background: var(--cow-surface); border-color: var(--cow-border); box-shadow: 0 16px 42px rgba(0,0,0,.32), 0 0 28px var(--cow-glow); }
+html[class*="theme-"] .cow-theme-option:hover,
+html[class*="theme-"] .cow-theme-option[aria-current="true"] { background: var(--cow-glow); color: var(--cow-accent); }
+
+#theme-menu { min-width: 190px; padding: 6px; border: 1px solid rgba(148,163,184,.2); border-radius: 14px; }
+.cow-theme-option { display: flex; align-items: center; gap: 9px; width: 100%; padding: 14px 13px; min-height: 76px; border: 1px solid var(--cow-border); border-radius: 14px; color: inherit; background: var(--cow-surface-soft); text-align: left; cursor: pointer; transition: background .16s ease, color .16s ease, transform .16s ease, border-color .16s ease; }
+.cow-theme-option:hover { transform: translateY(-2px); border-color: var(--cow-accent); }
+.cow-theme-option strong { display: block; font-size: 14px; font-weight: 650; }
+.theme-card small { display: block; margin-top: 3px; opacity: .62; font-size: 11px; }
+.cow-theme-swatch { width: 13px; height: 13px; flex: 0 0 13px; border-radius: 50%; background: var(--swatch); box-shadow: 0 0 9px color-mix(in srgb, var(--swatch), transparent 45%); }
+.cow-theme-option small { margin-left: auto; opacity: .55; font-size: 10px; }
+@media (prefers-reduced-motion: reduce) { .cow-theme-option { transition: none; } }

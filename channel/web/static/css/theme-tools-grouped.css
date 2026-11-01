@@ -1,0 +1,679 @@
+/* =====================================================================
+   Theme: Grouped Tool Calls (21st.dev style)
+   - รวม tool calls เป็นกลุ่มเดียว
+   - Header "Used N tools"
+   - แสดง timeline ภายใน
+   ===================================================================== */
+
+/* ============================================
+   Container: รวม tool calls เป็นกลุ่ม
+   ============================================ */
+.agent-steps {
+  position: relative;
+  margin: 12px 0;
+  padding: 0;
+}
+
+.agent-steps:not(:empty) {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 8px;
+  margin: 12px 0;
+}
+
+/* ============================================
+   Tool Step (แต่ละ tool)
+   ============================================ */
+.agent-tool-step {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none !important;
+  background: transparent !important;
+}
+
+.agent-tool-step .tool-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.agent-tool-step .tool-header:hover {
+  background: rgba(139, 92, 246, 0.08);
+}
+
+/* ============================================
+   Icon
+   ============================================ */
+.agent-tool-step .tool-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.2),
+    rgba(59, 130, 246, 0.2)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #a78bfa !important;
+  font-size: 11px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.agent-tool-step:hover .tool-icon {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.35),
+    rgba(59, 130, 246, 0.35)
+  );
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.3);
+}
+
+/* Failed state */
+.agent-tool-step.tool-failed .tool-icon {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.2), rgba(239, 68, 68, 0.2));
+  border-color: rgba(248, 113, 113, 0.4);
+  color: #f87171 !important;
+}
+
+/* ============================================
+   Tool Name
+   ============================================ */
+.agent-tool-step .tool-name {
+  flex: 1 1 100%;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  line-height: 1.4 !important;
+  min-width: 0;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: #e2e8f0 !important;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+/* ============================================
+   Time
+   ============================================ */
+.agent-tool-step .tool-time {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #64748b;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 3px 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: 4px;
+  line-height: 1;
+}
+
+/* ============================================
+   Chevron
+   ============================================ */
+.agent-tool-step .tool-chevron {
+  flex-shrink: 0;
+  font-size: 10px !important;
+  color: #64748b;
+  transition: transform 0.25s ease, color 0.2s ease;
+  opacity: 0.6;
+}
+
+.agent-tool-step:hover .tool-chevron {
+  color: #a78bfa;
+  opacity: 1;
+}
+
+.agent-tool-step.expanded .tool-chevron {
+  transform: rotate(90deg);
+  color: #a78bfa;
+  opacity: 1;
+}
+
+/* ============================================
+   Timeline connector (เส้นเชื่อม)
+   ============================================ */
+.agent-tool-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 25px;
+  top: 42px;
+  bottom: -8px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(139, 92, 246, 0.4),
+    rgba(139, 92, 246, 0.05)
+  );
+  border-radius: 1px;
+  z-index: 0;
+}
+
+.agent-tool-step .tool-header {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Tool Detail (Context Box)
+   ============================================ */
+.agent-tool-step .tool-detail {
+  display: none;
+  margin: 4px 0 8px 40px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 3px solid rgba(167, 139, 250, 0.5);
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  max-height: 280px;
+  overflow-y: auto;
+  animation: contextFade 0.3s ease;
+}
+
+@keyframes contextFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.agent-tool-step.expanded .tool-detail {
+  display: block;
+}
+
+/* Inner content */
+.tool-detail-section {
+  margin: 8px 0;
+}
+
+.tool-detail-section:first-child { margin-top: 0; }
+.tool-detail-section:last-child { margin-bottom: 0; }
+
+.tool-detail-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a78bfa;
+  margin-bottom: 6px;
+  padding: 2px 6px;
+  background: rgba(167, 139, 250, 0.1);
+  border-radius: 4px;
+}
+
+.tool-detail-label::before {
+  content: '▸';
+  font-size: 8px;
+}
+
+.tool-detail-content {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 11.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Output section (สีเขียว) */
+.tool-output-section .tool-detail-label {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.tool-output-section .tool-detail-content {
+  border-left: 2px solid rgba(74, 222, 128, 0.3);
+}
+
+/* Error */
+.tool-error-text {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+/* ============================================
+   Tool display output (markdown)
+   ============================================ */
+.tool-display-output.has-content {
+  display: block !important;
+  margin: 8px 0 0 0;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border-left: 3px solid rgba(167, 139, 250, 0.5);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.tool-display-output.has-content h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a78bfa;
+  margin: 10px 0 6px;
+}
+
+.tool-display-output.has-content h3:first-child { margin-top: 0; }
+
+.tool-display-output.has-content p {
+  margin: 6px 0;
+}
+
+.tool-display-output.has-content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: rgba(167, 139, 250, 0.1);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #c4b5fd;
+}
+
+/* ============================================
+   Sub-steps
+   ============================================ */
+.tool-substeps {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0 4px 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.tool-substep {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 6px;
+  font-size: 11.5px;
+  transition: background 0.15s ease;
+}
+
+.tool-substep:hover {
+  background: rgba(139, 92, 246, 0.06);
+}
+
+.tool-substep-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  border-radius: 4px;
+  background: rgba(167, 139, 250, 0.15);
+  color: #a78bfa;
+  flex-shrink: 0;
+}
+
+.tool-substep-failed { color: #f87171 !important; }
+
+.tool-substep-failed .tool-substep-icon {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+.tool-substep-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.tool-substep-args {
+  font-size: 10.5px;
+  color: #64748b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.tool-substep-time {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #475569;
+  padding-left: 8px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Light mode
+   ============================================ */
+:not(.dark) .agent-steps:not(:empty) {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+:not(.dark) .agent-tool-step .tool-name {
+  color: #1e293b !important;
+}
+
+:not(.dark) .agent-tool-step .tool-time {
+  background: rgba(0, 0, 0, 0.04);
+  color: #64748b;
+}
+
+:not(.dark) .agent-tool-step .tool-detail {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: #475569;
+}
+
+:not(.dark) .tool-detail-content {
+  background: rgba(0, 0, 0, 0.04);
+  color: #334155;
+}
+
+:not(.dark) .tool-detail-label {
+  background: rgba(139, 92, 246, 0.1);
+  color: #7c3aed;
+}
+
+:not(.dark) .tool-display-output.has-content {
+  background: rgba(0, 0, 0, 0.02);
+  color: #334155;
+}
+
+/* ============================================
+   Mobile
+   ============================================ */
+@media (max-width: 640px) {
+  .agent-steps:not(:empty) {
+    padding: 6px;
+    border-radius: 12px;
+  }
+  
+  .agent-tool-step .tool-header {
+    padding: 9px 10px;
+    gap: 8px;
+  }
+  
+  .agent-tool-step .tool-name {
+    font-size: 13px !important;
+  }
+  
+  .agent-tool-step .tool-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 10px !important;
+  }
+  
+  .agent-tool-step:not(:last-child)::after {
+    left: 23px;
+    top: 40px;
+  }
+  
+  .agent-tool-step .tool-detail {
+    margin-left: 34px;
+    padding: 10px 12px;
+  }
+  
+  .tool-detail-content {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+}
+
+/* =====================================================================
+   FIX: บังคับให้ชื่อ Tool แสดงเต็ม 100%
+   ใช้ selector ที่เฉพาะเจาะจง + !important
+   ===================================================================== */
+
+/* บังคับ tool-header ให้ wrap ได้ */
+div.agent-step.agent-tool-step > div.tool-header {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+/* บังคับ tool-name ให้แสดงเต็ม */
+div.agent-step.agent-tool-step > div.tool-header > span.tool-name {
+  display: block !important;
+  flex: 1 1 auto !important;
+  min-width: 200px !important;
+  max-width: none !important;
+  width: auto !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  color: #e2e8f0 !important;
+  font-weight: 500 !important;
+}
+
+/* Time อยู่ขวา ไม่บีบชื่อ */
+div.agent-step.agent-tool-step > div.tool-header > span.tool-time,
+div.agent-step.agent-tool-step > div.tool-header > .tool-time {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  margin-left: auto !important;
+}
+
+/* Icon ไม่บีบ */
+div.agent-step.agent-tool-step > div.tool-header > i.tool-icon {
+  flex: 0 0 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+
+/* Chevron */
+div.agent-step.agent-tool-step > div.tool-header > i.tool-chevron {
+  flex: 0 0 auto !important;
+}
+
+/* =====================================================================
+   สีของ Tool Icon ตามประเภท tool
+   ===================================================================== */
+
+/* default: ม่วง */
+.agent-tool-step .tool-icon {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2)) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  color: #a78bfa !important;
+}
+
+/* 🔍 browser / search / web → ฟ้า */
+.agent-tool-step[data-tool*="browser"] .tool-icon,
+.agent-tool-step[data-tool*="search"] .tool-icon,
+.agent-tool-step[data-tool*="web"] .tool-icon,
+.agent-tool-step[data-tool*="fetch"] .tool-icon {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.25), rgba(59, 130, 246, 0.25)) !important;
+  border-color: rgba(96, 165, 250, 0.4) !important;
+  color: #60a5fa !important;
+}
+
+/* 📄 read / view / cat → เขียว */
+.agent-tool-step[data-tool*="read"] .tool-icon,
+.agent-tool-step[data-tool*="view"] .tool-icon,
+.agent-tool-step[data-tool*="cat"] .tool-icon,
+.agent-tool-step[data-tool*="list"] .tool-icon {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.25), rgba(34, 197, 94, 0.25)) !important;
+  border-color: rgba(74, 222, 128, 0.4) !important;
+  color: #4ade80 !important;
+}
+
+/* ✍️ write / edit / create → ม่วง */
+.agent-tool-step[data-tool*="write"] .tool-icon,
+.agent-tool-step[data-tool*="edit"] .tool-icon,
+.agent-tool-step[data-tool*="create"] .tool-icon,
+.agent-tool-step[data-tool*="patch"] .tool-icon {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(139, 92, 246, 0.3)) !important;
+  border-color: rgba(167, 139, 250, 0.5) !important;
+  color: #c4b5fd !important;
+}
+
+/* 💻 bash / exec / shell / cmd → ส้ม */
+.agent-tool-step[data-tool*="bash"] .tool-icon,
+.agent-tool-step[data-tool*="exec"] .tool-icon,
+.agent-tool-step[data-tool*="shell"] .tool-icon,
+.agent-tool-step[data-tool*="cmd"] .tool-icon,
+.agent-tool-step[data-tool*="run"] .tool-icon {
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.25), rgba(249, 115, 22, 0.25)) !important;
+  border-color: rgba(251, 146, 60, 0.4) !important;
+  color: #fb923c !important;
+}
+
+/* 🔧 tool / mcp / api → เทา */
+.agent-tool-step[data-tool*="tool"] .tool-icon,
+.agent-tool-step[data-tool*="mcp"] .tool-icon,
+.agent-tool-step[data-tool*="api"] .tool-icon {
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.2), rgba(100, 116, 139, 0.2)) !important;
+  border-color: rgba(148, 163, 184, 0.3) !important;
+  color: #94a3b8 !important;
+}
+
+/* ❌ failed → แดง (ทับทุกสี) */
+.agent-tool-step.tool-failed .tool-icon {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.3), rgba(239, 68, 68, 0.3)) !important;
+  border-color: rgba(248, 113, 113, 0.5) !important;
+  color: #f87171 !important;
+}
+
+/* ✅ success → เขียว (ทับทุกสี) */
+.agent-tool-step:not(.tool-failed) .tool-icon.fa-check {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.25), rgba(34, 197, 94, 0.25)) !important;
+  border-color: rgba(74, 222, 128, 0.4) !important;
+  color: #4ade80 !important;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  div.agent-step.agent-tool-step > div.tool-header {
+    gap: 6px !important;
+  }
+  
+  div.agent-step.agent-tool-step > div.tool-header > span.tool-name {
+    min-width: 140px !important;
+    font-size: 12.5px !important;
+  }
+}
+
+/* =====================================================================
+   NEW FEATURE 1: Copy Code Button (ปุ่มคัดลอกโค้ด)
+   ===================================================================== */
+
+/* สร้างปุ่ม Copy แปะไว้ที่มุมขวาบนของ Code Block */
+pre code {
+    position: relative;
+}
+
+.code-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    color: #cbd5e1;
+    font-size: 11px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    backdrop-filter: blur(4px);
+}
+
+pre:hover .code-copy-btn {
+    opacity: 1;
+}
+
+.code-copy-btn:hover {
+    background: rgba(139, 92, 246, 0.3);
+    border-color: rgba(139, 92, 246, 0.5);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.code-copy-btn:active {
+    transform: scale(0.95);
+}
+
+.code-copy-btn.copied {
+    background: rgba(74, 222, 128, 0.2);
+    border-color: rgba(74, 222, 128, 0.4);
+    color: #4ade80;
+}
+
+/* =====================================================================
+   NEW FEATURE 2: Tool Running Glow (ไอคอนเรืองแสงตอนกำลังทำงาน)
+   ===================================================================== */
+
+/* ถ้า tool กำลังรัน (ยังไม่มี class .tool-failed หรือเสร็จสิ้น) */
+.agent-tool-step.tool-running .tool-icon,
+.agent-tool-step:not(.tool-failed):not(.tool-success) .tool-icon {
+    animation: toolRunningGlow 2s infinite ease-in-out;
+}
+
+@keyframes toolRunningGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.4);
+        border-color: rgba(167, 139, 250, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 12px 4px rgba(167, 139, 250, 0.2);
+        border-color: rgba(167, 139, 250, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(167, 139, 250, 0);
+        border-color: rgba(167, 139, 250, 0.5);
+    }
+}
+
+/* เพิ่มข้อความ "Running..." จางๆ ไว้ข้างชื่อ tool ที่กำลังทำงาน */
+.agent-tool-step.tool-running .tool-name::after,
+.agent-tool-step:not(.tool-failed):not(.tool-success) .tool-name::after {
+    content: '...';
+    display: inline-block;
+    animation: dotsBlink 1.4s infinite steps(4, end);
+    margin-left: 4px;
+    color: #a78bfa;
+}
+
+@keyframes dotsBlink {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+}

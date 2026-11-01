@@ -1,0 +1,88 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+
+# ===== Node =====
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ===== Logs & Runtime =====
+*.log
+run.log
+nova.log
+gold_api.log
+logs/
+nohup.out
+.cow.pid
+user_datas.pkl
+*.db
+*.db-shm
+*.db-wal
+
+# ===== Backups & Temp =====
+*.bak
+*.bak-*
+*.bak.*
+*.backup
+*.backup-*
+*.tmp
+*.tar.gz
+backup*/
+.local-backups/
+.nova-workspace/
+.ms-playwright/
+tmp/
+.cache/
+
+# ===== Secrets (ห้ามขึ้น Git) =====
+config.json
+config.json.*
+secrets*.json
+secrets.local.json
+.env
+.env.*
+.preview_secret
+*.pem
+*.key
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== Project-specific =====
+projects/
+test*/
+demo*/
+*.orig
+skills.orig/
+guard_backups/
+guard_logs/
+
+# ===== Memory & Media =====
+memory/
+agents/*/memory/
+agents/*/tmp/
+*.mp3
+*.wav
+*.ogg
+*.m4a
+page.html
+
+# ===== Local agent/tool state =====
+.agents/
+.claude/
+.grok/
+.test-env/

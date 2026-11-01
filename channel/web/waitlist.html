@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>NovaAgent — ขอสิทธิเข้าถง</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg-deep: #0b0a10;
+      --bg-surface: rgba(20, 18, 28, 0.55);
+      --bg-glass: rgba(30, 26, 42, 0.45);
+      --border-glass: rgba(213, 198, 224, 0.18);
+      --accent: #d5c6e0;
+      --accent-dim: rgba(213, 198, 224, 0.14);
+      --text: #f2f0f7;
+      --text-dim: #b9b2c9;
+      --success: #5cff8a;
+      --error: #ff6b6b;
+      --neon: rgba(92, 255, 138, 0.45);
+      --radius: 16px;
+      --shadow-lg: 0 25px 80px rgba(0, 0, 0, 0.55), 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: radial-gradient(1200px 800px at 20% -10%, #1a1625 0%, var(--bg-deep) 45%, #09080d 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", sans-serif;
+      color: var(--text);
+      overflow: hidden;
+    }
+    .ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    .ambient .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.35;
+      animation: float 18s ease-in-out infinite;
+    }
+    .orb.one { width: 420px; height: 420px; background: #4a2f6e; top: -120px; right: -80px; }
+    .orb.two { width: 320px; height: 320px; background: #2a4f4a; bottom: -80px; left: -60px; animation-delay: -6s; }
+    .orb.three { width: 220px; height: 220px; background: #5d2f5f; top: 40%; left: 30%; animation-delay: -12s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+      50% { transform: translateY(-25px) translateX(15px) scale(1.05); }
+    }
+    .wrap {
+      position: relative; z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 24px;
+      overflow: auto;
+    }
+    header { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 8px 0 10px; }
+    .logo {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, #6e4fb9, #9b7fd8);
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-weight: 800; color: #fff; font-size: 20px;
+      box-shadow: 0 8px 30px rgba(110, 79, 185, 0.45);
+    }
+    h1 {
+      font-size: 22px; font-weight: 700; letter-spacing: 0.3px;
+      background: linear-gradient(135deg, #fff, var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stage { display: grid; place-items: center; padding: 12px 0; }
+    .card {
+      width: 100%; max-width: 460px;
+      background: linear-gradient(180deg, var(--bg-surface), var(--bg-glass));
+      backdrop-filter: blur(22px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(600px 140px at 50% -60px, rgba(213, 198, 224, 0.10), transparent 60%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border-glass);
+      color: var(--accent);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.4px;
+      margin-bottom: 16px;
+    }
+    .eyebrow .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--neon);
+      box-shadow: 0 0 14px var(--neon);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    h2 { font-size: 24px; font-weight: 700; margin-bottom: 10px; line-height: 1.25; }
+    p.lead { color: var(--text-dim); font-size: 14.5px; line-height: 1.6; margin-bottom: 20px; }
+    .benefits { display: grid; gap: 10px; margin: 18px 0 22px; }
+    .benefit {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--text);
+      padding: 10px 12px; border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .benefit .check { color: var(--success); font-weight: 900; margin-top: 1px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dim); margin-bottom: 8px; }
+    input[type="email"], input[type="text"] {
+      width: 100%; padding: 13px 14px;
+      border-radius: 12px;
+      background: rgba(10, 9, 14, 0.7);
+      border: 1px solid var(--border-glass);
+      color: var(--text); font-size: 15px;
+      outline: none; transition: all 0.18s ease;
+    }
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(213, 198, 224, 0.12);
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100%; padding: 13px 18px;
+      border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.2px;
+      cursor: pointer; transition: all 0.18s ease;
+      margin-top: 14px;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, #7a57cf, #5b3db1);
+      color: #fff;
+      box-shadow: 0 10px 35px rgba(91, 61, 177, 0.4);
+    }
+    .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 14px 42px rgba(91, 61, 177, 0.5); }
+    .btn.primary:active { transform: translateY(0); }
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--border-glass);
+    }
+    .btn.secondary:hover { background: rgba(255, 255, 255, 0.1); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none !important; }
+    .msg {
+      margin-top: 14px; padding: 12px 13px; border-radius: 11px;
+      font-size: 13.5px; line-height: 1.5; display: none;
+    }
+    .msg.error { display: block; background: rgba(255, 107, 107, 0.12); border: 1px solid rgba(255, 107, 107, 0.35); color: #ffb3b3; }
+    .msg.info { display: block; background: rgba(92, 255, 138, 0.10); border: 1px solid rgba(92, 255, 138, 0.35); color: #c9ffe0; }
+    .divider {
+      display: flex; align-items: center; gap: 12px; margin: 20px 0; color: var(--text-dim); font-size: 12.5px;
+    }
+    .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--border-glass); }
+    .hint { font-size: 12.5px; color: var(--text-dim); text-align: center; margin-top: 12px; }
+    .hint a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .hint a:hover { text-decoration: underline; }
+    .hidden { display: none !important; }
+    .loading { display: inline-flex; align-items: center; gap: 8px; }
+    .spinner {
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 2.5px solid rgba(255,255,255,0.25);
+      border-top-color: #fff;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    footer { text-align: center; color: var(--text-dim); font-size: 12px; padding: 14px 0 10px; }
+    .fade-in { animation: fadeIn 280ms ease-out both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="logo">N</div>
+      <h1>NovaAgent</h1>
+    </header>
+
+    <div class="stage">
+      <div class="card fade-in" id="card">
+        <!-- Step 1: Waitlist request -->
+        <div id="step-waitlist">
+          <div class="eyebrow"><span class="dot"></span> INVITE-ONLY ACCESS</div>
+          <h2>NovaAgent ยังไม่เปิดสาธารณะ</h2>
+          <p class="lead">
+            ขณะนี้ NovaAgent อยู่ในช้วง invite-only สำหรับ early adopters เท่านั้น<br />
+            ลงทะเบียนอีเมลไว้ แล้วสลี่จะส่ง <strong>invite code</strong> กลับไปให้เมื่อมีที่ว่าง
+          </p>
+          <div class="benefits">
+            <div class="benefit"><span class="check">✓</span><span>เข้าถึงก่อนใครในช่วง private beta</span></div>
+            <div class="benefit"><span class="check">✓</span><span>ทดลองฟีเจอร์ใหม่ได้ก่อนปล่อยจริง</span></div>
+            <div class="benefit"><span class="check">✓</span><span>ส่ง feedback ถึงทีมพัฒนาโดยตรง</span></div>
+          </div>
+          <form id="form-waitlist">
+            <label for="wl-email">อีเมล</label>
+            <input type="email" id="wl-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+            <button type="submit" class="btn primary" id="btn-wl">
+              <span>ขอสิทธิ์เข้าถง</span>
+            </button>
+          </form>
+          <div class="msg" id="msg-wl"></div>
+          <div class="hint">มี invite code อยู่แล้ว? <a href="#" id="link-to-redeem">แลก code ที่นี่</a></div>
+        </div>
+
+        <!-- Step 2: Redeem code -->
+        <div id="step-redeem" class="hidden">
+          <div class="eyebrow"><span class="dot"></span> REDEEM INVITE CODE</div>
+          <h2>แลก invite code</h2>
+          <p class="lead">กรอก invite code ที่สลี่ส่งให้ พร้อมอีเมลเดียวกัน เพื่อยืนยันตัวตน</p>
+          <form id="form-redeem">
+            <label for="redeem-email">อีเมล (เดียวกับที่ใช้ลงทะเบียน)</label>
+            <input type="email" id="redeem-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+            <label for="redeem-code" style="margin-top: 14px;">Invite code</label>
+            <input type="text" id="redeem-code" name="code" placeholder="NOVA-ABCDEF" required autocomplete="off" style="text-transform: uppercase; letter-spacing: 1px;" />
+            <button type="submit" class="btn primary" id="btn-redeem">
+              <span>ยืนยัน code</span>
+            </button>
+          </form>
+          <div class="msg" id="msg-redeem"></div>
+          <div class="divider">หรือ</div>
+          <button class="btn secondary" id="btn-back">← กลับไปลงทะเบียน</button>
+        </div>
+
+        <!-- Step 3: Success -->
+        <div id="step-success" class="hidden">
+          <div class="eyebrow"><span class="dot" style="background: var(--success); box-shadow: 0 0 14px var(--success);"></span> พร้อมเข้าใช้งาน</div>
+          <h2>ยินดีต้อนรับสู่ NovaAgent</h2>
+          <p class="lead">
+            ยืนยันสิทธิ์สำเร็จ! ระบบกำลังพาเข้าสู้หน้า login...
+          </p>
+          <div class="msg info" id="msg-success"></div>
+          <div class="loading" style="margin-top: 18px; color: var(--text-dim); font-size: 13.5px;">
+            <span class="spinner"></span> <span>กำลังตรวจสอบสิทธิ์...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      NovaAgent — คิดให้ลึก สร้างให้จริง ตรวจให้ชัวร์
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const steps = {
+        waitlist: $('step-waitlist'),
+        redeem: $('step-redeem'),
+        success: $('step-success'),
+      };
+      const msgs = {
+        wl: $('msg-wl'),
+        redeem: $('msg-redeem'),
+        success: $('msg-success'),
+      };
+
+      function showStep(name) {
+        Object.keys(steps).forEach((k) => steps[k].classList.add('hidden'));
+        steps[name].classList.remove('hidden');
+        steps[name].classList.add('fade-in');
+        clearMsgs();
+      }
+
+      function clearMsgs() {
+        Object.values(msgs).forEach((el) => {
+          el.style.display = 'none';
+          el.className = 'msg';
+          el.textContent = '';
+        });
+      }
+
+      function setMsg(key, text, type) {
+        const el = msgs[key];
+        el.textContent = text;
+        el.className = 'msg ' + (type === 'error' ? 'error' : 'info');
+        el.style.display = 'block';
+      }
+
+      function setLoading(btn, loading) {
+        btn.disabled = loading;
+        const span = btn.querySelector('span');
+        if (loading) {
+          btn.dataset.text = span.textContent;
+          span.innerHTML = '<span class="spinner"></span> กำลังดำเนินการ...';
+        } else {
+          span.textContent = btn.dataset.text || 'ยืนยัน';
+        }
+      }
+
+      async function postJson(url, body) {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        try { return await res.json(); } catch { return { status: 'error', message: 'เกิดข้อผิดพลาดในการเชื่อมต่อ' }; }
+      }
+
+      // Step 1: join waitlist
+      $('form-waitlist').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = $('wl-email').value.trim();
+        const btn = $('btn-wl');
+        setLoading(btn, true);
+        const result = await postJson('/api/waitlist/join', { email });
+        setLoading(btn, false);
+        if (result.status === 'ok') {
+          setMsg('wl', result.message, 'info');
+          setTimeout(() => showStep('redeem'), 1100);
+        } else {
+          setMsg('wl', result.message, 'error');
+        }
+      });
+
+      // Step 2: redeem
+      $('form-redeem').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = $('redeem-email').value.trim();
+        const code = $('redeem-code').value.trim();
+        const btn = $('btn-redeem');
+        setLoading(btn, true);
+        const result = await postJson('/api/waitlist/redeem', { email, code });
+        setLoading(btn, false);
+        if (result.status === 'ok') {
+          setMsg('redeem', 'ยืนยันสิทธิ์สำเร็จ! กำลังเข้าสู้ระบบ...', 'info');
+          setTimeout(() => {
+            showStep('success');
+            setTimeout(() => { window.location.href = '/'; }, 1500);
+          }, 1100);
+        } else {
+          setMsg('redeem', result.message, 'error');
+        }
+      });
+
+      $('link-to-redeem').addEventListener('click', (e) => {
+        e.preventDefault();
+        showStep('redeem');
+      });
+
+      $('btn-back').addEventListener('click', (e) => {
+        e.preventDefault();
+        showStep('waitlist');
+      });
+
+      // Pre-fill redeem email from waitlist if provided via query ?email=...
+      const params = new URLSearchParams(window.location.search);
+      const emailParam = params.get('email');
+      if (emailParam) {
+        $('redeem-email').value = emailParam;
+      }
+    })();
+  </script>
+</body>
+</html>

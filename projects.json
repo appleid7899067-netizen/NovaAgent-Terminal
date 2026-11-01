@@ -1,0 +1,40 @@
+{
+  "sessions": {
+    "agent-umukch::session_a4782cce-eeeb-4e61-b345-ffb715410e62": {
+      "path": "/data/data/com.termux/files/home/NovaAgent-Brandable",
+      "ts": 1792233092.1433358
+    },
+    "agent-umukch::session_234d2e93-4154-4680-99f1-4702d415952d": {
+      "path": "/data/data/com.termux/files/home/projects/NovaAgent-Brandable/cowbase/projects/Panupan01",
+      "ts": 1792176105.6277227
+    }
+  },
+  "recents": [
+    {
+      "path": "/data/data/com.termux/files/home/NovaAgent-Brandable",
+      "name": "NovaAgent-Brandable",
+      "ts": 1792233092.1433644
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects/NovaAgent-Brandable/cowbase/projects/Panupan01",
+      "name": "Panupan01",
+      "ts": 1792200860.968881
+    },
+    {
+      "path": "/data/data/com.termux/files/home/projects",
+      "name": "projects",
+      "ts": 1792173571.9281545
+    },
+    {
+      "path": "/data/data/com.termux/files/home/cow.old.20261016-0449",
+      "name": "cow.old.20261016-0449",
+      "ts": 1792167403.7543085
+    }
+  ],
+  "meta": {
+    "/data/data/com.termux/files/home/cow.old.20261016-0449": {
+      "display_name": "cow.old.20261016-0449"
+    }
+  },
+  "order": []
+}

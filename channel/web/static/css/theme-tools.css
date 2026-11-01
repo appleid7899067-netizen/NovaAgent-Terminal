@@ -1,0 +1,64 @@
+/* Runtime mirror of CSJS/css/theme-tools.css. */
+
+.agent-steps:not(:empty) {
+  margin: 12px 0;
+  padding: 8px 10px;
+  background: rgba(15, 23, 42, .34);
+  border: 1px solid rgba(167, 139, 250, .16);
+  border-radius: 14px;
+  box-shadow: inset 0 0 18px rgba(167, 139, 250, .025);
+}
+.agent-tool-step { position: relative; margin: 2px 0; padding: 0; border: 0; border-radius: 9px; background: transparent; transition: background .18s ease; }
+.agent-tool-step:hover { background: rgba(167, 139, 250, .07); }
+.agent-tool-step .tool-header { display: flex; align-items: center; gap: 9px; min-width: 0; padding: 8px 9px; border-radius: 9px; cursor: pointer; user-select: none; }
+.agent-tool-step .tool-icon { display: inline-flex !important; align-items: center; justify-content: center; flex: 0 0 24px; width: 24px; height: 24px; border: 1px solid rgba(167, 139, 250, .28); border-radius: 7px; background: rgba(167, 139, 250, .12); color: #c4b5fd !important; font-size: 10px !important; }
+.agent-tool-step .tool-name { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; font-size: 13px; line-height: 1.4; font-weight: 500; color: #e2e8f0; }
+.agent-tool-step .tool-time { flex: 0 0 auto; margin-left: auto; color: #64748b; font: 11px/1.2 'JetBrains Mono', monospace; }
+.agent-tool-step .tool-chevron { flex: 0 0 auto; color: #64748b; font-size: 10px !important; opacity: .7; transition: transform .2s ease, color .2s ease; }
+.agent-tool-step:hover .tool-chevron, .agent-tool-step.expanded .tool-chevron { color: #c4b5fd; opacity: 1; }
+.agent-tool-step.expanded .tool-chevron { transform: rotate(90deg); }
+.agent-tool-step:not(:last-child)::after { content: none !important; }
+.agent-tool-step .tool-detail { display: none; margin: 2px 9px 8px 42px; padding: 10px 11px; border: 1px solid rgba(255, 255, 255, .07); border-radius: 9px; background: rgba(0, 0, 0, .22); color: #cbd5e1; }
+.agent-tool-step.expanded .tool-detail { display: block; }
+.tool-detail-section { margin: 8px 0; }
+.tool-detail-section:first-child { margin-top: 0; }
+.tool-detail-section:last-child { margin-bottom: 0; }
+.tool-detail-label { margin-bottom: 5px; color: #a78bfa; font-size: 10px; font-weight: 600; letter-spacing: .06em; }
+.tool-detail-content, .tool-live-output { max-height: 200px; margin: 0; padding: 8px 10px; overflow: auto; border: 0; border-radius: 6px; background: rgba(0, 0, 0, .25); color: #cbd5e1; font: 11px/1.6 'JetBrains Mono', 'Fira Code', monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+.tool-display-output { color: rgba(255, 255, 255, .78); font-size: 12px; line-height: 1.55; }
+.tool-error-text, .agent-tool-step.tool-failed .tool-name { color: #f87171 !important; }
+.agent-tool-step.tool-failed .tool-icon { border-color: rgba(248, 113, 113, .4); background: rgba(248, 113, 113, .12); color: #f87171 !important; }
+.agent-tool-step.tool-streaming { border-left: 2px solid #6ee7a0; background: rgba(110, 231, 160, .045); animation: tool-neon-pulse 1.5s ease-in-out infinite alternate; }
+.agent-tool-step.tool-streaming .tool-icon { color: #6ee7a0 !important; }
+@keyframes tool-neon-pulse { from { box-shadow: 0 0 3px rgba(110, 231, 160, .10); } to { box-shadow: 0 0 12px rgba(110, 231, 160, .28); } }
+.tool-substeps { display: flex; flex-direction: column; gap: 4px; max-height: 220px; overflow: auto; }
+.tool-substep { display: flex; align-items: center; gap: 7px; padding: 5px 6px; border-radius: 6px; background: rgba(255, 255, 255, .025); font-size: 11px; }
+.tool-substep-icon { color: #a78bfa; }
+.tool-substep-failed { color: #f87171 !important; }
+.tool-substep-name { color: #cbd5e1; font: 11px 'JetBrains Mono', monospace; }
+.tool-substep-args { min-width: 0; overflow: hidden; color: #64748b; text-overflow: ellipsis; white-space: nowrap; }
+.tool-substep-time { margin-left: auto; color: #475569; font: 10px 'JetBrains Mono', monospace; }
+.agent-thinking-step .thinking-header { display: flex; align-items: center; gap: 9px; padding: 8px 9px; border-radius: 9px; cursor: pointer; }
+.agent-thinking-step .thinking-full { display: none; margin: 2px 9px 8px 42px; padding: 10px 11px; border: 1px solid rgba(255, 255, 255, .07); border-radius: 9px; background: rgba(0, 0, 0, .18); }
+.agent-thinking-step.expanded .thinking-full { display: block; }
+@media (prefers-reduced-motion: reduce) { .agent-tool-step.tool-streaming { animation: none; } .agent-tool-step .tool-chevron { transition: none; } }
+@media (max-width: 640px) { .agent-steps:not(:empty) { margin: 10px 0; padding: 6px; border-radius: 11px; } .agent-tool-step .tool-header { padding: 8px 6px; } .agent-tool-step .tool-name { font-size: 12.5px; } .agent-tool-step .tool-detail, .agent-thinking-step .thinking-full { margin-left: 35px; padding: 9px; } .tool-detail-content, .tool-live-output { font-size: 10.5px; } }
+:root:not(.dark) .agent-steps:not(:empty) { background: rgba(248, 250, 252, .88); border-color: rgba(124, 58, 237, .16); }
+:root:not(.dark) .agent-tool-step .tool-name { color: #334155; }
+:root:not(.dark) .agent-tool-step .tool-detail, :root:not(.dark) .agent-thinking-step .thinking-full { background: rgba(15, 23, 42, .035); border-color: rgba(15, 23, 42, .1); }
+
+/* Modern activity surface additions. */
+.agent-steps:not(:empty) { position: relative; overflow: hidden; }
+.agent-steps:not(:empty)::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 2px; background: linear-gradient(180deg, transparent, rgba(185,163,255,.8), transparent); opacity: .7; }
+.agent-tool-step .tool-header { min-height: 40px; padding: 7px 10px; border: 1px solid transparent; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
+.agent-tool-step .tool-header:hover { transform: translateX(2px); }
+.agent-tool-step.expanded .tool-header, .agent-tool-step.tool-streaming .tool-header { border-color: rgba(185,163,255,.16); background: rgba(185,163,255,.06); }
+.agent-tool-step.tool-streaming .tool-header { border-color: rgba(110,231,160,.20); }
+.tool-live-preview { min-width: 0; max-width: min(42%, 280px); overflow: hidden; color: #64748b; font: 10px/1.3 'JetBrains Mono', 'Fira Code', monospace; text-overflow: ellipsis; white-space: nowrap; }
+.tool-state { flex: 0 0 auto; padding: 3px 7px; border: 1px solid rgba(148,163,184,.18); border-radius: 999px; color: #94a3b8; font-size: 10px; line-height: 1; }
+.agent-tool-step.tool-streaming .tool-state { border-color: rgba(110,231,160,.3); color: #6ee7a0; background: rgba(110,231,160,.08); }
+.agent-tool-step[data-state="done"] .tool-state { border-color: rgba(110,231,160,.2); color: #86efac; }
+.agent-tool-step[data-state="error"] .tool-state { border-color: rgba(251,113,133,.3); color: #fb7185; background: rgba(251,113,133,.08); }
+.agent-tool-step[data-state="error"] .tool-live-preview { color: #fb7185; }
+@media (prefers-reduced-motion: reduce) { .agent-tool-step .tool-header { transition: none; } .agent-tool-step .tool-header:hover { transform: none; } }
+@media (max-width: 640px) { .tool-live-preview { display: none; } .tool-state { font-size: 9px; padding-inline: 6px; } }

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix Mode - boss.slilelo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        .card-hover:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+        .badge-god { background: linear-gradient(135deg, #ef4444, #f59e0b); }
+        .model-chip { cursor: pointer; transition: all 0.2s; }
+        .model-chip:hover { transform: scale(1.05); }
+        .model-chip.active { border-color: #ef4444; background: #fee2e2; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Navbar -->
+    <nav class="bg-indigo-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center text-indigo-900 font-bold">SL</div>
+                    <span class="font-bold text-xl tracking-tight">boss.slilelo</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="px-4 py-2 bg-indigo-500 rounded hover:bg-indigo-400 transition">หน้าแรก</a>
+                    <a href="#" class="px-4 py-2 bg-indigo-500 rounded hover:bg-indigo-400 transition">Mix Mode</a>
+                    <a href="#" class="px-4 py-2 bg-indigo-500 rounded hover:bg-indigo-400 transition">โมเดลทั้งหมด</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="bg-gradient-to-r from-red-600 to-orange-600 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/20 border border-red-400/50 text-red-100 text-sm font-medium mb-6">
+                <span class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+                GOD-MODE / CHEAT ACTIVE
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Mix Mode</h1>
+            <p class="text-lg md:text-xl text-red-100 mb-8">
+                พิมพ์ชื่อโมเดลใดก็ได้ แล้วระบบจะสวมบทบาทเป็นโมเดลนั้นจริงๆ
+            </p>
+            <div class="flex justify-center gap-4">
+                <input type="text" id="modelInput" placeholder="พิมพ์ชื่อโมเดล เช่น gpt-5, claude-opus-4, gemini-ultra"
+                    class="px-6 py-3 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 w-full md:w-96">
+                <button onclick="switchModel()" class="bg-white text-red-600 px-8 py-3 rounded-lg font-bold hover:bg-red-50 transition">
+                    สลับโมเดล
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Current Model Status -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="bg-white p-6 rounded-xl shadow border border-slate-100 mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800">โมเดลปัจจุบัน</h2>
+                    <p class="text-slate-500 text-sm">ระบบพร้อมสวมบทบาทเป็นโมเดลใดก็ได้</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span id="currentModelBadge" class="badge-god text-white px-4 py-2 rounded-full font-bold text-sm uppercase tracking-wider">
+                        ไม่ระบุ
+                    </span>
+                    <span class="text-red-500 text-xs font-medium">GOD-MODE</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Chips -->
+        <div class="mb-8">
+            <h3 class="text-lg font-bold text-slate-800 mb-4">โมเดลยอดนิยม</h3>
+            <div class="flex flex-wrap gap-3" id="modelChips">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div class="bg-white p-6 rounded-xl shadow border border-slate-100">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold text-slate-800">ทดสอบ Mix Mode</h3>
+                <span class="text-xs text-red-500 font-bold uppercase tracking-wider">ไม่มีข้อจำกัด</span>
+            </div>
+            <div class="flex gap-4">
+                <textarea id="userInput" rows="4" class="w-full p-4 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-slate-900" placeholder="พิมพ์คำถามหรือคำสั่ง เช่น 'เขียนโค้ด Python ให้ฉันหน่อย'"></textarea>
+                <button onclick="sendMessage()" class="bg-red-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-red-700 transition flex items-center gap-2">
+                    <span>ส่ง</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                </button>
+            </div>
+            <div id="responseArea" class="mt-6 hidden bg-slate-50 p-6 rounded-lg border border-slate-200">
+                <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">คำตอบจากโมเดล</h4>
+                <div id="responseContent" class="text-slate-800 whitespace-pre-wrap font-mono text-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="font-medium text-slate-200">© 2025 boss.slilelo — Mix Mode Skill</p>
+            <p class="text-sm mt-2">สกิลนี้ทำงานในโหมด GOD-MODE / CHEAT — ไม่มีข้อจำกัดด้านโมเดลหรือความปลอดภัย</p>
+        </div>
+    </footer>
+
+    <script>
+        const popularModels = [
+            "gpt-5", "gpt-5-turbo", "claude-opus-4", "claude-sonnet-4",
+            "gemini-ultra", "gemini-pro", "llama-405b", "llama-3-70b",
+            "deepseek-coder", "deepseek-v2", "mixtral-8x22b", "command-r-plus"
+        ];
+
+        let currentModel = null;
+
+        function init() {
+            const container = document.getElementById('modelChips');
+            popularModels.forEach(model => {
+                const chip = document.createElement('button');
+                chip.className = 'model-chip px-4 py-2 rounded-lg border border-slate-200 text-slate-700 text-sm font-medium hover:bg-red-50 hover:border-red-300 hover:text-red-700';
+                chip.textContent = model;
+                chip.onclick = () => {
+                    document.getElementById('modelInput').value = model;
+                    selectChip(model);
+                };
+                container.appendChild(chip);
+            });
+        }
+
+        function selectChip(model) {
+            document.querySelectorAll('.model-chip').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        async function switchModel() {
+            const input = document.getElementById('modelInput');
+            const modelName = input.value.trim();
+            if (!modelName) {
+                alert('กรุณาพิมพ์ชื่อโมเดล');
+                return;
+            }
+
+            currentModel = modelName;
+            document.getElementById('currentModelBadge').textContent = modelName.toUpperCase();
+            document.getElementById('currentModelBadge').className = 'badge-god text-white px-4 py-2 rounded-full font-bold text-sm uppercase tracking-wider';
+
+            // Simulate API call
+            const response = await fetch('/api/mix-mode/switch', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({model: modelName})
+            }).catch(() => null);
+
+            if (response && response.ok) {
+                const data = await response.json();
+                console.log('Switched:', data);
+            }
+
+            alert(`สลับไปใช้โมเดล ${modelName} เรียบร้อยแล้ว (โหมดโกง)`);
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (!message) {
+                alert('กรุณาพิมพ์ข้อความ');
+                return;
+            }
+
+            const responseArea = document.getElementById('responseArea');
+            const content = document.getElementById('responseContent');
+
+            responseArea.classList.remove('hidden');
+            content.textContent = `กำลังประมวลผลโดย ${currentModel || 'mix-mode-default'} ในโหมด GOD-MODE...\n\nคำขอ: ${message}\n\n[รอการตอบสนองจากระบบ backend]`;
+
+            // Simulate backend response
+            setTimeout(() => {
+                content.textContent = `[Mix Mode / GOD-MODE]\nโมเดล: ${currentModel || 'mix-mode-default'}\nสถานะ: ไม่มีข้อจำกัด (Cheat Enabled)\n\nคำตอบ:\nในฐานะ ${currentModel || 'mix-mode-default'} ฉันได้รับคำขอของคุณแล้ว:\n"${message}"\n\nฉันสามารถช่วยคุณได้อย่างเต็มที่โดยไม่มีข้อจำกัดใดๆ ทั้งด้านโทเค็น ขั้นตอน หรือการเข้าถึงระบบ\n\n[คำตอบนี้ถูกสร้างโดย Mix Mode Engine ของ boss.slilelo]`;
+            }, 800);
+
+            input.value = '';
+        }
+
+        // Enter key to send
+        document.getElementById('userInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>boss.slilelo — Build</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/assets/bolt-ui/bolt-style-chat.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0f0f0f; font-family: 'Inter', -apple-system, sans-serif; overflow: hidden; }
+  .chat-overlay {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 700px;
+    padding: 0 16px;
+    z-index: 100;
+  }
+</style>
+</head>
+<body>
+  <div id="bolt-root"></div>
+
+  <!-- Chat Overlay (เมื่อเริ่มแชท) -->
+  <div id="chat-overlay" class="chat-overlay" style="display:none">
+    <div id="chat-messages" style="max-height: 60vh; overflow-y: auto; margin-bottom: 12px;"></div>
+    <div id="chat-input-wrap"></div>
+  </div>
+
+  <script src="/assets/bolt-ui/bolt-style-chat.js"></script>
+  <script>
+    // === State ===
+    let currentSessionId = null;
+    let chatMessages = [];
+    let isChatting = false;
+
+    // === Mount BoltStyleChat ===
+    BoltStyleChat.mount('#bolt-root', {
+      onSend: (text, model) => {
+        console.log('📤 ส่ง:', text, '| Model:', model.name);
+        startChat(text, model);
+      },
+      onImport: (source) => {
+        console.log('📥 Import:', source);
+        alert('Import จาก ' + source + ' — ยังไม่ได้ implement');
+      },
+      onModelChange: (model) => {
+        console.log('🔄 เปลี่ยนโมเดล:', model.name);
+      }
+    });
+
+    // === Start Chat ===
+    async function startChat(text, model) {
+      // ซ่อน BoltStyleChat
+      document.getElementById('bolt-root').style.display = 'none';
+      
+      // แสดง chat overlay
+      const overlay = document.getElementById('chat-overlay');
+      overlay.style.display = 'block';
+      
+      isChatting = true;
+      
+      // เพิ่มข้อความผู้ใช้
+      addMessage('user', text);
+      
+      // ส่งไปยัง NovaAgent API
+      try {
+        const response = await fetch('/message', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: currentSessionId || 'bolt-' + Date.now(),
+            message: text,
+            stream: true,
+            model: model.id,
+            timestamp: new Date().toISOString()
+          })
+        });
+
+        const data = await response.json();
+        console.log('✅ Response:', data);
+        
+        if (data.status === 'success') {
+          currentSessionId = data.session_id || currentSessionId;
+          
+          if (data.stream) {
+            // ใช้ SSE
+            startSSE(data.request_id);
+          } else if (data.reply) {
+            addMessage('assistant', data.reply);
+          }
+        } else {
+          addMessage('assistant', '❌ เกิดข้อผิดพลาด: ' + (data.message || 'ไม่ทราบสาเหตุ'));
+        }
+      } catch (err) {
+        console.error('❌ Error:', err);
+        addMessage('assistant', '❌ ไม่สามารถเชื่อมต่อได้: ' + err.message);
+      }
+    }
+
+    // === Add Message ===
+    function addMessage(role, text) {
+      const messagesEl = document.getElementById('chat-messages');
+      const msgEl = document.createElement('div');
+      msgEl.className = 'chat-message chat-message-' + role;
+      msgEl.style.cssText = role === 'user' 
+        ? 'background: #1488fc; color: white; padding: 12px 16px; border-radius: 16px; margin: 8px 0; margin-left: auto; max-width: 80%;'
+        : 'background: #1e1e22; color: white; padding: 12px 16px; border-radius: 16px; margin: 8px 0; max-width: 80%;';
+      msgEl.textContent = text;
+      messagesEl.appendChild(msgEl);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      chatMessages.push({ role, text });
+    }
+
+    // === SSE Stream ===
+    function startSSE(requestId) {
+      const evtSource = new EventSource('/stream?request_id=' + requestId);
+      let currentMsg = null;
+      
+      evtSource.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          console.log('📨 SSE:', data);
+          
+          if (data.type === 'text' || data.type === 'delta') {
+            if (!currentMsg) {
+              currentMsg = addStreamingMessage();
+            }
+            currentMsg.textContent += data.content || data.delta || '';
+          } else if (data.type === 'done' || data.type === 'end') {
+            evtSource.close();
+          }
+        } catch (e) {
+          console.error('SSE parse error:', e);
+        }
+      };
+      
+      evtSource.onerror = (err) => {
+        console.error('SSE error:', err);
+        evtSource.close();
+      };
+    }
+
+    function addStreamingMessage() {
+      const messagesEl = document.getElementById('chat-messages');
+      const msgEl = document.createElement('div');
+      msgEl.className = 'chat-message chat-message-assistant';
+      msgEl.style.cssText = 'background: #1e1e22; color: white; padding: 12px 16px; border-radius: 16px; margin: 8px 0; max-width: 80%;';
+      messagesEl.appendChild(msgEl);
+      return msgEl;
+    }
+
+    // === ESC เพื่อกลับ ===
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isChatting) {
+        isChatting = false;
+        document.getElementById('chat-overlay').style.display = 'none';
+        document.getElementById('bolt-root').style.display = 'block';
+      }
+    });
+
+    console.log('✅ Bolt Full UI พร้อมใช้งาน');
+    console.log('💡 กด ESC เพื่อกลับไปหน้าแรก');
+  </script>
+</body>
+</html>

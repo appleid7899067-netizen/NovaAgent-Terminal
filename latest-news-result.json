@@ -1,0 +1,276 @@
+{
+  "scrapedAt": "2026-10-24T17:30:43.339Z",
+  "query": "latest world news",
+  "searchProvider": "Yandex",
+  "count": 3,
+  "results": [
+    {
+      "name": "Yandex news search",
+      "requestedUrl": "https://yandex.com/search/?text=latest%20world%20news",
+      "success": false,
+      "error": "net::ERR_NAME_NOT_RESOLVED at https://yandex.com/search/?text=latest%20world%20news"
+    },
+    {
+      "name": "BBC World",
+      "requestedUrl": "https://www.bbc.com/news/world",
+      "finalUrl": "https://www.bbc.com/news/world",
+      "title": "World | Latest News & Updates | BBC News",
+      "text": "Skip to content Register Sign In Home News Sport Business Technology Health Culture Arts Travel Earth Audio Video Live World LIVE Clashes erupt in Paris and other cities after thousands join mostly peaceful protests across France There has not yet been a repeat of the chaos seen during previous protests, our correspondent in Paris reports. Ukraine says Starlink connection 'now stable' after network limits The slowed Starlink connections had affected the Ukraine's military and drone operations for a week. 5 hrs ago Europe Vanessa Trump says she is cancer-free six months after revealing diagnosis The ex-wife of Donald Trump Jr, with whom she shares five children, announced in May that she had been diagnosed with breast cancer. 3 hrs ago US & Canada Three released without charge after fatal arson attack in Ireland Three people - two women and one man - have been released, and one person remains in custody, gardaí say. 8 hrs ago Europe Man arrested after fire at Hitler's mountaintop Eagle's Nest retreat Some 200 emergency personnel were deployed to fight the blaze at the Nazi dictator's Alpine residence in Germany. 2 hrs ago Europe Father who killed Oregon school gunman describes anguish over children he couldn't save Kaylub Giamanco has been hailed as a hero for killing a teenager who fatally shot three children and a teacher. 19 hrs ago US & Canada British woman dies after trying to rescue sons swept away at sea in the Bahamas Nathan Gregory says the loss of childhood sweetheart Leanne \"is unimaginable for our family\". 19 mins ago Nottinghamshire Woman, 65, becomes second patient to die of Ebola in Kenya She was a close family member of the first victim, a man who had travelled from the Democratic Republic of Congo. Australian MP's condition improves after alleged car attack The independent MP is now in a serious but stable condition, according to the Melbourne hospital. Student movement takes Serbia's Vučić to the wire in neck-and-neck election The Student List has emerged from almost two years of anti-corruption protests to form the biggest challenge to Vučić's rule. White House lifts tariffs on some Canadian goods as midterm elections loom From 30 October, tariffs will be eased on some products, including certain machinery, and placed on others, such as carpets. Two rescued after Nairobi building collapse with five still missing Police have launched a manhunt for the building's owner and contractor after the multi-storey building collapsed while still under construction. WATCH/LISTEN Watch as fire engulfs Hitler's mountaintop Eagle's Nest retreat Police in the southern German state of Bavaria have detained a 33-year-old German man following the fire. Who actually controls Ukraine's access to Starlink? President Zelensky says limits to the technology continue to affect Ukrainian forces, while US officials and Elon Musk offer conflicting accounts of who controls it. Doctors tell the BBC about the targeting of Sudanese hospitals by paramilitary fighters A BBC investigation has found evidence that Sudanese paramilitary fighters systematically destroyed el-Fasher's healthcare system. Blue Planet III: Moment octopus escapes death after hunt gone wrong The sequence is part of the latest Blue Planet series from Sir David Attenborough. 'It's part of the culture' - New York bans horse-drawn carriages after more than 160 years The BBC's Madeline Halpert spoke to city tourists, residents and horse carriage workers about the industry and their opinion on the ban. MORE TO EXPLORE The rise of AI election ads in US midterms campaign BBC Verify has tracked dozens of AI ads to assess how they are being used by campaigns in the midterms. 12 hrs ago BBC Verify How Brazil's changing working class is reshaping the presidential race Calls for change present a challenge to President Lula in the second round of the election on Sunday. 12 hrs ago Latin America Hispanic voters helped bring Trump to power - in Texas, the tide may be turning Recent polls",
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "https://www.bbc.com/news/world#bbc-main"
+        },
+        {
+          "text": "",
+          "href": "https://www.bbc.com/"
+        },
+        {
+          "text": "Register",
+          "href": "https://session.bbc.com/session?action=register&userOrigin=BBCS_BBC&ptrt=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld"
+        },
+        {
+          "text": "Sign In",
+          "href": "https://session.bbc.com/session?userOrigin=BBCS_BBC&ptrt=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld"
+        },
+        {
+          "text": "Home",
+          "href": "https://www.bbc.com/"
+        },
+        {
+          "text": "News",
+          "href": "https://www.bbc.com/news"
+        },
+        {
+          "text": "Sport",
+          "href": "https://www.bbc.com/sport"
+        },
+        {
+          "text": "Business",
+          "href": "https://www.bbc.com/business"
+        },
+        {
+          "text": "Technology",
+          "href": "https://www.bbc.com/technology"
+        },
+        {
+          "text": "Health",
+          "href": "https://www.bbc.com/health"
+        },
+        {
+          "text": "Culture",
+          "href": "https://www.bbc.com/culture"
+        },
+        {
+          "text": "Arts",
+          "href": "https://www.bbc.com/arts"
+        },
+        {
+          "text": "Travel",
+          "href": "https://www.bbc.com/travel"
+        },
+        {
+          "text": "Earth",
+          "href": "https://www.bbc.com/future-planet"
+        },
+        {
+          "text": "Audio",
+          "href": "https://www.bbc.com/audio"
+        },
+        {
+          "text": "Video",
+          "href": "https://www.bbc.com/video"
+        },
+        {
+          "text": "Live",
+          "href": "https://www.bbc.com/live"
+        },
+        {
+          "text": "",
+          "href": "https://www.bbc.com/"
+        },
+        {
+          "text": "",
+          "href": "https://www.bbc.com/sport"
+        },
+        {
+          "text": "",
+          "href": "https://www.bbc.com/health"
+        },
+        {
+          "text": "",
+          "href": "https://www.bbc.com/weather"
+        },
+        {
+          "text": "",
+          "href": "https://www.bbc.com/newsletters"
+        },
+        {
+          "text": "",
+          "href": "https://www.bbc.com/news/live/cq1j38x0n4zrt"
+        },
+        {
+          "text": "LIVE\nClashes erupt in Paris and other cities after thousands join mostly peaceful protests across France\n\nThere has not yet been a repeat of the chaos seen during previous protests, our correspondent in Paris reports.",
+          "href": "https://www.bbc.com/news/live/cq1j38x0n4zrt"
+        },
+        {
+          "text": "Ukraine says Starlink connection 'now stable' after network limits\n\nThe slowed Starlink connections had affected the Ukraine's military and drone operations for a week.\n\n5 hrs ago\nEurope",
+          "href": "https://www.bbc.com/news/articles/cwkg5md14j8go"
+        },
+        {
+          "text": "Vanessa Trump says she is cancer-free six months after revealing diagnosis\n\nThe ex-wife of Donald Trump Jr, with whom she shares five children, announced in May that she had been diagnosed with breast cancer.\n\n3 hrs ago\nUS & Canada",
+          "href": "https://www.bbc.com/news/articles/cm1dwzvn6227o"
+        },
+        {
+          "text": "Three released without charge after fatal arson attack in Ireland\n\nThree people - two women and one man - have been released, and one person remains in custody, gardaí say.\n\n8 hrs ago\nEurope",
+          "href": "https://www.bbc.com/news/articles/cv0ld9571511o"
+        },
+        {
+          "text": "Man arrested after fire at Hitler's mountaintop Eagle's Nest retreat\n\nSome 200 emergency personnel were deployed to fight the blaze at the Nazi dictator's Alpine residence in Germany.\n\n2 hrs ago\nEurope",
+          "href": "https://www.bbc.com/news/articles/cr93zwjw1k4qo"
+        },
+        {
+          "text": "Father who killed Oregon school gunman describes anguish over children he couldn't save\n\nKaylub Giamanco has been hailed as a hero for killing a teenager who fatally shot three children and a teacher.\n\n19 hrs ago\nUS & Canada",
+          "href": "https://www.bbc.com/news/articles/crgj9ndwvj9jo"
+        },
+        {
+          "text": "British woman dies after trying to rescue sons swept away at sea in the Bahamas\n\nNathan Gregory says the loss of childhood sweetheart Leanne \"is unimaginable for our family\".\n\n19 mins ago\nNottinghamshire",
+          "href": "https://www.bbc.com/news/articles/cm86z5n0yvy6o"
+        }
+      ],
+      "success": true,
+      "blocked": false
+    },
+    {
+      "name": "Al Jazeera News",
+      "requestedUrl": "https://www.aljazeera.com/news/",
+      "finalUrl": "https://www.aljazeera.com/news/",
+      "title": "News | Today's latest from Al Jazeera",
+      "text": "Skip links Skip to Featured Content Skip to Content Feed Navigation menu News Show more news sections Explained Sport Opinion Video Interactives More Show more sections LIVE Click here to search Sign up Navigation menu US-Israel war on Iran Yemen conflict Middle East Africa Asia Asia Pacific Europe Latin America US & Canada News Featured Content LIVE UPDATES LIVE UPDATES, Houthis launch ballistic missile attack on Yemen’s Aden Houthis say they targeted the Al-Nasr camp and the naval military base in the southern port city of Aden. Published On 24 Oct 2026 24 Oct 2026 France protests draw 400,000 for new rallies against rising living costs Published On 24 Oct 2026 24 Oct 2026 About 25,000 rally in Madrid in support of Spain’s state pension scheme Published On 24 Oct 2026 24 Oct 2026 More than 2,000 forced from homes in Hebron amid Israel’s West Bank raids Published On 24 Oct 2026 24 Oct 2026 Security forces deploy as Milan braces for another day of protests Published On 24 Oct 2026 24 Oct 2026 Ukraine says Starlink restored as attacks continue in Russia and Ukraine Published On 24 Oct 2026 24 Oct 2026 Czech Republic advances media funding overhaul despite criticism Published On 24 Oct 2026 24 Oct 2026 German police detain suspect after fire engulfs Hitler’s Eagle’s Nest Published On 24 Oct 2026 24 Oct 2026 Brazil’s Lula and Bolsonaro debate policy proposals before run-off Published On 24 Oct 2026 24 Oct 2026 Advertisement Content Feed Rubio calls on Cubans to partner with CIA ‘to create positive change’ Washington has raised pressure on Havana after the capture of former Venezuelan President Nicolas Maduro. Published On 24 Oct 2026 24 Oct 2026 North Korea’s Kim Jong Un visits China via newly opened bridge North Korean leader meets top Chinese official and tours key sites in border city of Dandong during the one-day trip. Published On 24 Oct 2026 24 Oct 2026 Hospital in Yemen’s Taiz warns of collapse in days because of Houthi siege Dialysis patients face shorter treatment sessions as severe shortages of fuel, medicines, and oxygen threaten hospitals. Published On 24 Oct 2026 24 Oct 2026 Israel raids towns, arrests dozens of Palestinians in occupied West Bank Israeli military raid targets at least 15 towns in the northern West Bank, including Nablus and Jenin. Published On 24 Oct 2026 24 Oct 2026 Typhoon Champi hits Taiwan, killing one and injuring hundreds Storm topples trees, triggers brief flooding, disrupts power lines and forces 5,000 people to evacuate. Published On 23 Oct 2026 23 Oct 2026 Pentagon designates Confucius Institutes a national security threat Pete Hegseth says the Pentagon dismantled 80 ‘propaganda cells’ operating under new names at 30 universities. Published On 24 Oct 2026 24 Oct 2026 European, Middle East ministers urge US-Iran diplomacy, not new attacks An escalation would ‘create nothing but losers’, French foreign minister says as US official warns of possible strike. Published On 23 Oct 2026 23 Oct 2026 What to know as Brazil prepares for tense presidential run-off Polls show leftist incumbent Lula closing gap on right-wing rival Flavio Bolsonaro ahead of second round of voting. Published On 23 Oct 2026 23 Oct 2026 How Benjamin Netanyahu reshaped Israel’s institutions As Israel heads to the polls on October 27, its polarising and longest-serving prime minister is seeking re-election. Published On 24 Oct 2026 24 Oct 2026 Argentinian judge drops fraud investigation into Milei over crypto scandal President Javier Milei’s role in cryptocurrency launch does not translate into a fraudulent scheme, judge says. Published On 24 Oct 2026 24 Oct 2026 Show more content Show more Sign up for Al Jazeera Breaking News Alert Get real-time breaking news alerts and stay up-to-date with the most important headlines from around the globe. E-mail address Subscribe Please check your email to confirm your subscription By signing up, you agree to our Privacy Policy protected by reCAPTCHA About About Us Code of Ethics Terms and",
+      "links": [
+        {
+          "text": "Skip to Featured Content",
+          "href": "https://www.aljazeera.com/news/#featured-news-container"
+        },
+        {
+          "text": "Skip to Content Feed",
+          "href": "https://www.aljazeera.com/news/#news-feed-container"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/"
+        },
+        {
+          "text": "play Live",
+          "href": "https://www.aljazeera.com/video/live"
+        },
+        {
+          "text": "News",
+          "href": "https://www.aljazeera.com/news/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/middle-east/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/africa/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/asia/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/us-canada/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/latin-america/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/europe/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/asia-pacific/"
+        },
+        {
+          "text": "Explained",
+          "href": "https://www.aljazeera.com/tag/explainer/"
+        },
+        {
+          "text": "Sport",
+          "href": "https://www.aljazeera.com/sports"
+        },
+        {
+          "text": "Opinion",
+          "href": "https://www.aljazeera.com/opinion/"
+        },
+        {
+          "text": "Video",
+          "href": "https://www.aljazeera.com/videos/"
+        },
+        {
+          "text": "Interactives",
+          "href": "https://www.aljazeera.com/interactives/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/aljazeera-originals"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/features/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/economy/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/tag/human-rights/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/climate-crisis"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/investigations/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/gallery/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/tag/science-and-technology/"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/audio/podcasts"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/travel"
+        },
+        {
+          "text": "",
+          "href": "https://www.aljazeera.com/sponsored/"
+        },
+        {
+          "text": "LIVE",
+          "href": "https://www.aljazeera.com/video/live"
+        },
+        {
+          "text": "US-Israel war on Iran",
+          "href": "https://www.aljazeera.com/news/liveblog/2026/10/24/iran-war-live-israel-launches-targeted-hebron-operation-after-attack"
+        }
+      ],
+      "success": false,
+      "blocked": true
+    }
+  ]
+}

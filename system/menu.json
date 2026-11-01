@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "chat",
+      "title": "",
+      "items": [
+        {
+          "id": "chat",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "chat",
+          "hidden": false
+        },
+        {
+          "id": "artifacts",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "artifacts",
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": "manage",
+      "title": "",
+      "items": [
+        {
+          "id": "agents",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "agents",
+          "hidden": false
+        },
+        {
+          "id": "config",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "config",
+          "hidden": false
+        },
+        {
+          "id": "skills",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "skills",
+          "hidden": false
+        },
+        {
+          "id": "memory",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "memory",
+          "hidden": false
+        },
+        {
+          "id": "knowledge",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "knowledge",
+          "hidden": false
+        },
+        {
+          "id": "channels",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "channels",
+          "hidden": false
+        },
+        {
+          "id": "tasks",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "tasks",
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "id": "monitor",
+      "title": "",
+      "items": [
+        {
+          "id": "logs",
+          "type": "builtin",
+          "title": "",
+          "icon": "",
+          "view": "logs",
+          "hidden": false
+        }
+      ]
+    }
+  ]
+}
